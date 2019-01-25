@@ -14,6 +14,7 @@
 // Route::get('/', '');
 Auth::routes();
 
+Route::get('/cache', 'HomeController@cache');
 Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::post('/generate-pdf', 'HomeController@pdf')->name('pdf');

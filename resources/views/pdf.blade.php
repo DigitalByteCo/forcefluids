@@ -1,3 +1,11 @@
+<?php 
+$grandtotal = 0;
+foreach($data['product_name'] as $k => $v) {
+if(!empty($v)) {
+$grandtotal = $grandtotal + $data['total'][$k];
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -89,11 +97,36 @@
                         <tr>
                             <td colspan="6">
                                 <span>Total</span>
-                                <span class="pull-right">123</span>
+                                <span class="pull-right">{{$grandtotal}}</span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form_details">
+                <label class="highlight-label">Customer Representative:</label>
+                <p>&nbsp;</p>
+            </div>
+            <div class="col-md-6 form_details">
+                <label class="highlight-label">Warehouse Supervisor:</label>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Delivery Address (if applicable)</label>
+                <p>{{$data['driver_name']}}</p>
+                <p>{{$data['street_address']}}</p>
+                <p>{{$data['city_st_zip']}}</p>
+                <p>{{$data['phone_no']}}</p>
+            </div>
+            <div class="col-md-6">
+                <p>
+                    <label class="pull-right"><strong>*Please Note*</strong></label>
+                </p>
+                <p>{{$data['please_note']}}</p>
             </div>
         </div>
     </div>

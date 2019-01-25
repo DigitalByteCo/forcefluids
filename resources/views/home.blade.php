@@ -34,10 +34,6 @@
                                     <input type="text" id="force_team_sales_rep" name="force_team_sales_rep" placeholder="Force Team Sales Rep" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="delivery_address" class=" form-control-label">Delivery Address</label>
-                                    <input type="text" id="delivery_address" name="delivery_address" placeholder="Delivery Address" class="form-control">
-                                </div>
-                                <div class="form-group">
                                     <label for="purchase_approved_by" class=" form-control-label">Purchase Approved By</label>
                                     <input type="text" id="purchase_approved_by" name="purchase_approved_by" placeholder="Purchase Approved By" class="form-control">
                                 </div>
@@ -48,25 +44,26 @@
                             </div>
                         </div>
                         <hr>
+                        <p>Delivery Address</p>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="delivery_address" class=" form-control-label">Driver Name or NA</label>
-                                    <input type="text" id="delivery_address" name="delivery_address" placeholder="Delivery Address" class="form-control">
+                                    <label for="driver_name" class=" form-control-label">Driver Name or NA</label>
+                                    <input type="text" id="driver_name" name="driver_name" placeholder="Driver Name or NA" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="delivery_address" class=" form-control-label">Street Address</label>
-                                    <input type="text" id="delivery_address" name="delivery_address" placeholder="Delivery Address" class="form-control">
+                                    <label for="street_address" class=" form-control-label">Street Address</label>
+                                    <input type="text" id="street_address" name="street_address" placeholder="Street Address" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="delivery_address" class=" form-control-label">City, State, Zip</label>
-                                    <input type="text" id="delivery_address" name="delivery_address" placeholder="Delivery Address" class="form-control">
+                                    <label for="city_st_zip" class=" form-control-label">City, State, Zip</label>
+                                    <input type="text" id="city_st_zip" name="city_st_zip" placeholder="City, State, Zip" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="delivery_address" class=" form-control-label">phone no</label>
-                                    <input type="text" id="delivery_address" name="delivery_address" placeholder="Delivery Address" class="form-control">
+                                    <label for="phone_no" class=" form-control-label">phone no</label>
+                                    <input type="text" id="phone_no" name="phone_no" placeholder="Phone No." class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="please_note" class=" form-control-label">Please Note</label>

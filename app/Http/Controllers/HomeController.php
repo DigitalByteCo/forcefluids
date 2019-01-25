@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Product;
 use Illuminate\Http\Request;
+use PDF;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,12 @@ class HomeController extends Controller
     public function pdf(Request $request)
     {
         $data = $request->all();
-        // dd($data);
-        return view('pdf', compact('data'));
+        $pdf = PDF::loadView('pdf', compact('data'));
+        return $pdf->download('invoice.pdf');
+    }
+
+    public function cache()
+    {
+        dd('here');
     }
 }
