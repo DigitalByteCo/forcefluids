@@ -16,5 +16,6 @@ Auth::routes();
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
+	Route::post('/generate-pdf', 'HomeController@pdf')->name('pdf');
 	Route::get('/', 'HomeController@index');
 });

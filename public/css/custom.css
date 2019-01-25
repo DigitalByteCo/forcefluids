@@ -1,0 +1,52 @@
+.pull-right {
+    float: right !important;
+}
+.pull-left {
+    float: left !important;
+}
+.mb-5{
+    margin-bottom: 5px !important;
+}
+.mt-25{
+    margin-top: 25px !important;
+}
+
+#pdf-div {
+    border-top: 10px solid #3C78D8; 
+}
+.color-blue {
+    color: #3C78D8 !important;
+}
+.color-white {
+    color: #fff !important;
+}
+.bg-color-blue {
+    background-color: #3C78D8 !important;
+}
+.logo_container {
+    float: left;
+}
+.logo_container img {
+    width: 120px;
+    height: 130px
+}
+.company_info {
+    margin: 10px 0;
+}
+.company_info p {
+    margin: 0;
+    font-size: 11px;
+    color: rgba(0,0,0,0.7);
+}
+.pick_up_div p {
+    padding-bottom: 5px;
+    border-bottom: 1px solid;
+}
+.highlight-label {
+    width: 100%;
+    background-color: #C9DAF8;
+}
+.form_details p {
+    padding-bottom: 5px;
+    border-bottom: 1px solid;
+}
