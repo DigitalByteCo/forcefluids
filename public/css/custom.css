@@ -1,3 +1,18 @@
+.text-right {
+    text-align: right !important;
+}
+.pdf_header_main {
+    display: block;
+}
+.pdf_header_div {
+    display: inline-block;
+    width: 450px;
+    padding: 10px;
+}
+.form_details {
+    display: inline-block;
+    width: 49%;
+}
 .pull-right {
     float: right !important;
 }
@@ -43,10 +58,50 @@
     border-bottom: 1px solid;
 }
 .highlight-label {
-    width: 100%;
+    width: 98%;
     background-color: #C9DAF8;
+    display: inline-block;
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 14px;
+    font-weight: bold;
 }
 .form_details p {
     padding-bottom: 5px;
     border-bottom: 1px solid;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    padding-right: 20px;
+}
+table th {
+    padding: 10px;
+    font-size: 13px;
+}
+table td {
+    border: 0.9px solid #ccc;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.address_details {
+    display: inline-block;
+    width: 280px;
+    float: left;
+}
+.address_details.border_bottom p {
+    margin: 5px 0;
+    border-bottom: 1px solid #000;
+    padding: 5px;
+}
+.please_note_p {
+    height: 140px;
+    font-size: 13px;
+    background-color: #C9DAF8;
+    text-align: justify;
+    padding: 5px;
 }
