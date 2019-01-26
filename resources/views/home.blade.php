@@ -74,11 +74,10 @@
                         <hr>
                         <p>Product Details</p>
                         <div class="row all_product">
-                            @for($i=1; $i<= 20; $i++)
-                            <div class="col-md-3 col-xs-12 product_main_div" id="product_main_div_{{$i}}" data-no="{{$i}}">
+                            <div class="col-md-12 col-xs-12 product_main_div" id="product_main_div_1" data-no="1">
                                 <div class="form-group">
-                                    <label for="product_name_{{$i}}" class=" form-control-label">Product {{$i}}</label>
-                                    <select id="product_name_{{$i}}" name="product_name[]" class="form-control product_name" data-no="{{$i}}">
+                                    <label for="product_name_1" class=" form-control-label">Product 1</label>
+                                    <select id="product_name_1" name="product_name[]" class="form-control product_name" data-no="1">
                                         <option value="0">Select Product</option>
                                         @foreach($products as $p)
                                         <option value="{{$p->name}}" data-price="{{$p->price}}" data-app="{{$p->application}}">{{$p->name}}</option>
@@ -86,35 +85,35 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="unit_{{$i}}" class=" form-control-label">Unit of Measurement</label>
-                                    <select id="unit_{{$i}}" name="unit[]" class="form-control" data-no="{{$i}}">
+                                    <label for="unit_1" class=" form-control-label">Unit of Measurement</label>
+                                    <select id="unit_1" name="unit[]" class="form-control" data-no="1">
                                         <option value="Pail">Pail</option>
                                         <option value="Tote">Tote</option>
                                         <option value="Gallon">Gallon</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="product_application_{{$i}}" class=" form-control-label">Product Application</label>
-                                    <input type="text" id="product_application_{{$i}}" name="product_application[]" placeholder="Product Application" class="form-control">
+                                    <label for="product_application_1" class=" form-control-label">Product Application</label>
+                                    <input type="text" id="product_application_1" name="product_application[]" placeholder="Product Application" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="qty_{{$i}}" class="form-control-label">Qty</label>
-                                    <input type="text" id="qty_{{$i}}" name="qty[]" class="form-control qty_txt" data-no="{{$i}}">
+                                    <label for="qty_1" class="form-control-label">Qty</label>
+                                    <input type="text" id="qty_1" name="qty[]" class="form-control qty_txt" data-no="1">
                                 </div>
                                 <div class="form-group">
-                                    <label for="price_{{$i}}" class="form-control-label">Price Per Galon</label>
-                                    <input type="text" id="price_{{$i}}" name="price[]" class="form-control price_txt" data-no="{{$i}}">
+                                    <label for="price_1" class="form-control-label">Price Per Galon</label>
+                                    <input type="text" id="price_1" name="price[]" class="form-control price_txt" data-no="1">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label">Total</label>
-                                    <input type="text" id="total_{{$i}}" name="total[]" class="form-control total" readonly="readonly">
+                                    <input type="text" id="total_1" name="total[]" class="form-control total" readonly="readonly">
                                 </div>
                                 <hr>
                             </div>
-                            @endfor
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-outline-success" name="submit">Submit</button>
+                            <button type="button" class="btn btn-outline-primary add_product" name="submit">Add Product</button>
                         </div>
                     </form>
                 </div>
@@ -126,28 +125,40 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".product_name").change(function(){
+        $(".all_product").on('change', '.product_name', function(){
             var i = $(this).data("no");
             var price = $("option:selected", this).data("price");
             var application = $("option:selected", this).data("app");
             $("#product_application_"+i).val(application);
             $("#price_"+i).val(price);
         });
-
-        $(".price_txt").on("keypress, change, keyup", function() {
+        $(".all_product").on("keypress, change, keyup", '.price_txt', function() {
             var  i = $(this).data("no");
             var price = $(this).val();
             var qty = $("#qty_"+i).val();
             var total = parseFloat(price)*parseInt(qty);
             $("#total_"+i).val(total);
         });
-
-        $(".qty_txt").on("keypress, change, keyup", function() {
+        $(".all_product").on("keypress, change, keyup", ".qty_txt", function() {
             var  i = $(this).data("no");
             var qty = $(this).val();
             var price = $("#price_"+i).val();
             var total = parseFloat(price)*parseInt(qty);
             $("#total_"+i).val(total);
+        });
+        $(".add_product").click(function(){
+            var pro = $(".product_name", $(".product_main_div:last")).val();
+            if(pro > 0) {
+                var prod_no = $(".product_main_div:last").data("no");
+                $.ajax({
+                    url : 'product?prod_no='+prod_no,
+                    type : 'get',
+                    success : function (html) {
+                        $(".all_product").append(html);
+                        $(".all_product").replaceAll($(".all_product"));
+                    }
+                });
+            }
         });
     });
 </script>

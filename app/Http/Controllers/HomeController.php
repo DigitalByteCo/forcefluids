@@ -40,6 +40,14 @@ class HomeController extends Controller
         return $pdf->download('invoice.pdf');
     }
 
+    public function product(Request $request)
+    {
+        $products = Product::all();
+        $data = $request->all();
+        $data['prod_no']++;
+        return view('add_product', compact('data', 'products'));
+    }
+
     public function cache()
     {
         dd('here');
