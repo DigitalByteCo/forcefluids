@@ -32,9 +32,11 @@ class HomeController extends Controller
     public function pdf(Request $request)
     {
         $data = $request->all();
-        // return view('pdf', compact('data'));
+        // return view('pdf-template.blank_receiving_ticket_template', compact('data'));0
+        // return view('pdf-template.blank_sale_order_template', compact('data'));
+        // return view('pdf-template.product_sample_ticket_template', compact('data'));
 
-        $pdf = PDF::loadView('pdf', compact('data'))->setPaper('a3', 'potrait');
+        $pdf = PDF::loadView('pdf-template.product_sample_ticket_template', compact('data'))->setPaper('a3', 'potrait');
         return $pdf->download('invoice.pdf');
     }
 

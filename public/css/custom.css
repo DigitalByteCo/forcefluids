@@ -29,14 +29,23 @@
 #pdf-div {
     border-top: 10px solid #3C78D8; 
 }
+#pdf-div.green-color {
+    border-top: 10px solid #274E13;
+}
 .color-blue {
     color: #3C78D8 !important;
+}
+.color-green {
+    color: #274E13 !important;
 }
 .color-white {
     color: #fff !important;
 }
 .bg-color-blue {
     background-color: #3C78D8 !important;
+}
+.bg-color-green {
+    background-color: #274E13 !important;
 }
 .logo_container {
     float: left;
@@ -60,6 +69,16 @@
 .highlight-label {
     width: 98%;
     background-color: #C9DAF8;
+    display: inline-block;
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.highlight-label-green {
+    width: 98%;
+    background-color: #D9EAD3;
     display: inline-block;
     padding-left: 10px;
     padding-top: 4px;
@@ -102,6 +121,13 @@ table td {
     height: 140px;
     font-size: 13px;
     background-color: #C9DAF8;
+    text-align: justify;
+    padding: 5px;
+}
+.please_note_green_p {
+    height: 140px;
+    font-size: 13px;
+    background-color: #D9EAD3;
     text-align: justify;
     padding: 5px;
 }
