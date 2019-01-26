@@ -23,7 +23,7 @@ foreach($data['product_name'] as $k => $v) {
 <body id="pdf-div" class="green-color">
     <div class="container-fluid">
         <div class="row pdf_header_main">
-            <p style="height: 10px;"></p>
+            <p style="height: 5px; margin: 0;"></p>
             <div class="pdf_header_div">
                 <div class="logo_container">
                     <img src="{{asset('images/logo.png')}}">
