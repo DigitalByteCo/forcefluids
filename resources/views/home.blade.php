@@ -148,7 +148,7 @@
         });
         $(".add_product").click(function(){
             var pro = $(".product_name", $(".product_main_div:last")).val();
-            if(pro > 0) {
+            if(pro != 0) {
                 var prod_no = $(".product_main_div:last").data("no");
                 $.ajax({
                     url : 'product?prod_no='+prod_no,

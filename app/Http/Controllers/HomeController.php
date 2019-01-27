@@ -32,12 +32,20 @@ class HomeController extends Controller
     public function pdf(Request $request)
     {
         $data = $request->all();
-        // return view('pdf-template.blank_receiving_ticket_template', compact('data'));0
+        // return view('pdf-template.blank_receiving_ticket_template', compact('data'));
         // return view('pdf-template.blank_sale_order_template', compact('data'));
         // return view('pdf-template.product_sample_ticket_template', compact('data'));
 
-        $pdf = PDF::loadView('pdf-template.product_sample_ticket_template', compact('data'))->setPaper('a3', 'potrait');
-        return $pdf->download('invoice.pdf');
+        $blank_ticket_template = 'blank_receiving_ticket_'.strtotime('now');
+        $pdf1 = PDF::loadView('pdf-template.blank_receiving_ticket_template', compact('data'))->setPaper('a3', 'potrait')->save('../storage/pdf/'.$blank_ticket_template.'.pdf');
+
+        $blank_sale_order = 'blank_sales_order_'.strtotime('now');
+        $pdf2 = PDF::loadView('pdf-template.blank_sale_order_template', compact('data'))->setPaper('a3', 'potrait')->save('../storage/pdf/'.$blank_sale_order.'.pdf');
+
+        $product_sample_ticket = 'product_sample_ticket_'.strtotime('now');
+        $pdf3 = PDF::loadView('pdf-template.product_sample_ticket_template', compact('data'))->setPaper('a3', 'potrait')->save('../storage/pdf/'.$product_sample_ticket.'.pdf');
+
+        return redirect()->route('home');
     }
 
     public function product(Request $request)
