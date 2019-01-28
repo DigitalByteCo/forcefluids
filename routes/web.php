@@ -19,5 +19,6 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::post('/generate-pdf', 'HomeController@pdf')->name('pdf');
 	Route::get('/product', 'HomeController@product')->name('product');
+	Route::post('/mail-pdf', 'HomeController@mailPdf')->name('mail.pdf');
 	Route::get('/', 'HomeController@index');
 });

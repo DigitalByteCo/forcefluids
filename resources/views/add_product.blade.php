@@ -11,9 +11,9 @@
     <div class="form-group">
         <label for="unit_{{$data['prod_no']}}" class=" form-control-label">Unit of Measurement</label>
         <select id="unit_{{$data['prod_no']}}" name="unit[]" class="form-control" data-no="{{$data['prod_no']}}">
+            <option value="Gallon">Gallon</option>
             <option value="Pail">Pail</option>
             <option value="Tote">Tote</option>
-            <option value="Gallon">Gallon</option>
         </select>
     </div>
     <div class="form-group">

@@ -25,7 +25,9 @@
 .mt-25{
     margin-top: 25px !important;
 }
-
+.mr-10 {
+    margin-right: 10px !important;
+}
 #pdf-div {
     border-top: 10px solid #3C78D8; 
 }

@@ -10,7 +10,7 @@
                     <form method="post" action="{{route('pdf')}}">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-5">
                                 <div class="form-group">
                                     <label for="date" class=" form-control-label">Date</label>
                                     <input type="text" id="date" name="date" placeholder="Date" class="form-control">
@@ -87,9 +87,9 @@
                                 <div class="form-group">
                                     <label for="unit_1" class=" form-control-label">Unit of Measurement</label>
                                     <select id="unit_1" name="unit[]" class="form-control" data-no="1">
+                                        <option value="Gallon">Gallon</option>
                                         <option value="Pail">Pail</option>
                                         <option value="Tote">Tote</option>
-                                        <option value="Gallon">Gallon</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -125,6 +125,7 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function(){
+        $("#date").datepicker('clearDates');
         $(".all_product").on('change', '.product_name', function(){
             var i = $(this).data("no");
             var price = $("option:selected", this).data("price");
