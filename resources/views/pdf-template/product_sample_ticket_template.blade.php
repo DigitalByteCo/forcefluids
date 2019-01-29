@@ -113,7 +113,7 @@ foreach($data['product_name'] as $k => $v) {
                     <label class="pull-right" style="font-size: 13px;"><strong>*Please Note*</strong></label>
                 </p>
                 <br/>
-                <p class="please_note_green_p">{{$data['please_note']}}</p>
+                <p class="please_note_green_p">The products, quantities, and prices listed above are acurate and satisfactory to customer representative. Final price subject to change if tax and delivery are applicable. Acceptance of this order shall serve as intent to pay within agreed upon terms.</p>
             </div>
         </div>
     </div>

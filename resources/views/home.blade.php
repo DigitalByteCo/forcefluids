@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Sales Form</div>
+                <div class="card-header"><h3><strong>Force Fluids Sales Order Form</strong></h3></div>
                 <div class="card-body">
-                    <form method="post" action="{{route('pdf')}}">
+                    <form method="post" action="{{route('pdf')}}" id="salesForm">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-5">
@@ -25,7 +25,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="pickup_location" class=" form-control-label">Pickup Location</label>
-                                    <input type="text" id="pickup_location" name="pickup_location" placeholder="Pickup Location" class="form-control">
+                                    <select name="pickup_location" class="form-control">
+                                        <option value="Force Headquarters Broussard, LA  5431 Highway 90 E. Broussard, LA 70518">Force Headquarters Broussard, LA  5431 Highway 90 E. Broussard, LA 70518</option>
+                                        <option value="Diversified Warehouse 600 Industrial Ave., OdesTX, 79761">Diversified Warehouse 600 Industrial Ave., OdesTX, 79761</option>
+                                        <option value="Ray West warehouse 4801 Baldwin Blvd, Corpus Christi, TX 78408">Ray West warehouse 4801 Baldwin Blvd, Corpus Christi, TX 78408</option>
+                                        <option value="Ray West warehouse 4801 Baldwin Blvd, Corpus Christi, TX 78408">Jones Road Warehouse 5969 Jones Rd, Bryan, TX 77807</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -62,12 +67,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="phone_no" class=" form-control-label">phone no</label>
+                                    <label for="phone_no" class=" form-control-label">Phone Number</label>
                                     <input type="text" id="phone_no" name="phone_no" placeholder="Phone No." class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="please_note" class=" form-control-label">Please Note</label>
-                                    <textarea type="text" id="please_note" name="please_note" placeholder="Please Note" class="form-control"></textarea>
+                                    <label for="please_note" class=" form-control-label">Customer Representative</label>
+                                    <input type="text" id="cust_rep" name="cust_rep" placeholder="Customer Representative" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="please_note" class=" form-control-label">Warehouse Supervisor</label>
+                                    <input type="text" id="warehouse_supervisor" name="warehouse_supervisor" placeholder="Warehouse Supervisor" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -160,6 +169,10 @@
                     }
                 });
             }
+        });
+        $("#salesForm").submit(function(){
+            alert("hii");
+            return false;
         });
     });
 </script>

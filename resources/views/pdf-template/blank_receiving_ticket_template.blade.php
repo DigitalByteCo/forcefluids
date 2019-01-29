@@ -100,11 +100,11 @@ foreach($data['product_name'] as $k => $v) {
         <div class="row" style="display: block;">
             <div class="form_details">
                 <label class="highlight-label">Customer Representative:</label>
-                <p>&nbsp;</p>
+                <p>{{cust_rep}}</p>
             </div>
             <div class="form_details">
                 <label class="highlight-label">Warehouse Supervisor:</label>
-                <p>&nbsp;</p>
+                <p>{{warehouse_supervisor}}</p>
             </div>
         </div>
         <br/>
@@ -121,7 +121,7 @@ foreach($data['product_name'] as $k => $v) {
                     <label class="pull-right" style="font-size: 13px;"><strong>*Please Note*</strong></label>
                 </p>
                 <br/>
-                <p class="please_note_p">{{$data['please_note']}}</p>
+                <p class="please_note_p">The products, quantities, and prices listed above are acurate and satisfactory to customer representative. Final price subject to change if tax and delivery are applicable. Acceptance of this order shall serve as intent to pay within agreed upon terms.</p>
             </div>
         </div>
     </div>

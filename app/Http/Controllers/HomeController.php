@@ -60,7 +60,6 @@ class HomeController extends Controller
     {
         Mail::to($request->to_email)->send(new SendPdf($request->all()));
         return redirect()->route('home');
-        dd($request->all());
     }
 
     public function cache()
