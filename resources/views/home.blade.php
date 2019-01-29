@@ -121,7 +121,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-outline-success" name="submit">Submit</button>
+                            <button type="submit" class="btn btn-outline-success" name="submit" style="float: right;">Submit</button>
                             <button type="button" class="btn btn-outline-primary add_product" name="submit">Add Product</button>
                         </div>
                     </form>
@@ -171,8 +171,17 @@
             }
         });
         $("#salesForm").submit(function(){
-            alert("hii");
-            return false;
+            var error = false;
+            $("input").each(function(){
+                var val = $(this).val().trim();
+                if(val == '' || val == null || val == undefined) {
+                    error = true;
+                }
+            });
+            if(error) {
+                alert("All fields are required!!!");
+                return false;
+            }
         });
     });
 </script>

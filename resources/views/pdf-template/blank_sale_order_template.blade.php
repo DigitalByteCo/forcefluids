@@ -37,7 +37,7 @@ foreach($data['product_name'] as $k => $v) {
             </div>
         </div>
         <div style="clear: both;"></div>
-        <p class="color-blue" style="display: block; clear: both; height: 20px; font-size: 40px;"><strong>Sales Order Sheet</strong></p>
+        <p class="color-blue" style="display: block; clear: both; height: 50px; font-size: 40px;"><strong>Sales Order Sheet</strong></p>
         <br/>
         <div class="row" style="display: block;">
             <div class="form_details">

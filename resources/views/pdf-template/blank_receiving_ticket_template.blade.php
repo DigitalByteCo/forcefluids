@@ -100,11 +100,11 @@ foreach($data['product_name'] as $k => $v) {
         <div class="row" style="display: block;">
             <div class="form_details">
                 <label class="highlight-label">Customer Representative:</label>
-                <p>{{cust_rep}}</p>
+                <p>{{$data['cust_rep']}}</p>
             </div>
             <div class="form_details">
                 <label class="highlight-label">Warehouse Supervisor:</label>
-                <p>{{warehouse_supervisor}}</p>
+                <p>{{$data['warehouse_supervisor']}}</p>
             </div>
         </div>
         <br/>
