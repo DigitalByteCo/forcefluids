@@ -6,7 +6,11 @@
             @foreach($products as $p)
             <option value="{{$p->name}}" data-price="{{$p->price}}" data-app="{{$p->application}}">{{$p->name}}</option>
             @endforeach
+            <option value="other">Other</option>
         </select>
+    </div>
+    <div id="other_prod_div_{{$data['prod_no']}}" class="form-group other_prod_div">
+
     </div>
     <div class="form-group">
         <label for="unit_{{$data['prod_no']}}" class=" form-control-label">Unit of Measurement</label>

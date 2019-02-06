@@ -78,7 +78,11 @@ foreach($data['product_name'] as $k => $v) {
                         @if($v)
                         <tr>
                             <td>{{$data['unit'][$k]}}</td>
+                            @if($v == 'other' && !empty($data['other_prod'][$k]))
+                            <td>{{$data['other_prod'][$k]}}</td>
+                            @else
                             <td>{{$v}}</td>
+                            @endif
                             <td>{{$data['product_application'][$k]}}</td>
                             <td>{{$data['qty'][$k]}}</td>
                             <td>${{$data['price'][$k]}}</td>

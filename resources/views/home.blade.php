@@ -91,7 +91,11 @@
                                         @foreach($products as $p)
                                         <option value="{{$p->name}}" data-price="{{$p->price}}" data-app="{{$p->application}}">{{$p->name}}</option>
                                         @endforeach
+                                        <option value="other">Other</option>
                                     </select>
+                                </div>
+                                <div id="other_prod_div_1" class="form-group other_prod_div">
+
                                 </div>
                                 <div class="form-group">
                                     <label for="unit_1" class=" form-control-label">Unit of Measurement</label>
@@ -122,7 +126,8 @@
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-outline-success" name="submit" style="float: right;">Submit</button>
-                            <button type="button" class="btn btn-outline-primary add_product" name="submit">Add Product</button>
+                            <button type="button" class="btn btn-outline-primary add_product">Add Product</button>
+                            <button type="button" class="btn btn-outline-danger cancle_product">Remove Product</button>
                         </div>
                     </form>
                 </div>
@@ -136,11 +141,18 @@
     $(document).ready(function(){
         $("#date").datepicker('clearDates');
         $(".all_product").on('change', '.product_name', function(){
+            var prod_val = $(this).val();
             var i = $(this).data("no");
             var price = $("option:selected", this).data("price");
             var application = $("option:selected", this).data("app");
             $("#product_application_"+i).val(application);
             $("#price_"+i).val(price);
+            if(prod_val == 'other') {
+                var sub_no = i - 1;
+                $("#other_prod_div_"+i).html('<label for="other_prod_'+i+'" class=" form-control-label">Product Name</label> <input type="text" id="other_prod_'+i+'" name="other_prod['+sub_no+']" placeholder="Product Name" class="form-control">')
+            } else {
+                $("#other_prod_div_"+i).html(" ");
+            }
         });
         $(".all_product").on("keypress, change, keyup", '.price_txt', function() {
             var  i = $(this).data("no");
@@ -168,6 +180,12 @@
                         $(".all_product").replaceAll($(".all_product"));
                     }
                 });
+            }
+        });
+        $(".cancle_product").click(function() {
+            var prod_no = $(".product_main_div:last").data("no");
+            if(prod_no > 1) {
+                $("#product_main_div_"+prod_no).remove();
             }
         });
         $("#salesForm").submit(function(){
