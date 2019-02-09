@@ -15,8 +15,9 @@ class UserSeeder extends Seeder
     	$user = User::create([
     		'name' => config('admin.name'),
     		'email' => config('admin.email'),
-    		'email_verified_at' => date("Y-m-d H:i:s"),
-    		'password' => bcrypt(config('admin.password'))
-    	]);
+            'role_id' => 1,
+            'email_verified_at' => date("Y-m-d H:i:s"),
+            'password' => bcrypt(config('admin.password'))
+        ]);
     }
 }
