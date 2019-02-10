@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Company;
-use App\Http\Requests\Admin\Company\StoreRequest;
+use App\Model\User;
+use App\Model\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Admin\Customer\StoreRequest;
 use App\Http\Controllers\Controller;
 
-class CompanyController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
-        return view('admin.company.index', compact('companies'));
+        $customers = User::where('role_id', Role::CUSTOMER)->get();
+        return view('admin.customer.index', compact('customers'));
     }
 
     /**
@@ -27,7 +29,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('admin.company.create');
+        return view('admin.customer.create');
     }
 
     /**
@@ -38,14 +40,13 @@ class CompanyController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $user = $request->user();
+        $user = new User;
+        $user->fill($request->all());
+        $user->role_id = Role::CUSTOMER;
+        $user->password = Hash::make('password@123');
+        $user->save();
 
-        $company = new Company;
-        $company->fill($request->all());
-        $company->updated_by = $user->id;
-
-        $user->companies()->save($company);
-        return redirect()->route('admin.company.index');
+        return redirect()->route('admin.customer.index');
     }
 
     /**
@@ -56,7 +57,6 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
         dd($id);
     }
 
@@ -66,9 +66,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit($id)
     {
-        return view('admin.company.edit', compact('company'));
+        //
     }
 
     /**
@@ -78,14 +78,9 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreRequest $request, Company $company)
+    public function update(Request $request, $id)
     {
-        $company->fill($request->all());
-
-        $company->updated_by = $request->user()->id;
-        $company->save();
-
-        return redirect()->route('admin.company.index');
+        //
     }
 
     /**
@@ -96,6 +91,6 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        dd('here');
+        //
     }
 }

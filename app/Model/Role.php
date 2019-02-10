@@ -6,10 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    //
-	protected $fillable = [
-		'name',
-	];
+    /*
+     * User role for admin
+    */
+    CONST ADMIN = 1;
 
-	public $timestamps = false;
+    /*
+     * User role for Sales Representative
+    */
+    CONST SALES = 2;
+
+    /*
+     * User role for Customer
+    */
+    CONST CUSTOMER = 3;
+
+    protected $fillable = [
+        'name',
+    ];
+
+    public $timestamps = false;
 }
