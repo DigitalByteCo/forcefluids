@@ -31,12 +31,17 @@ class User extends Authenticatable
 
     public function companies()
     {
-        return $this->hasMany('App\Model\Company');
+        return $this->hasMany(Company::class);
     }
 
     public function jobs()
     {
-        return $this->hasMany('App\Model\Job');
+        return $this->hasMany(Job::class, 'customer_id');
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'customer_id');
     }
 
     public function getStatusAttribute()

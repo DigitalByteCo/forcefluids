@@ -22,7 +22,7 @@ class CreateJobsTable extends Migration
             $table->string('contact_phone');
             $table->date('date');
             $table->time('start_time');
-            $table->date('end_time');
+            $table->time('end_time');
             $table->string('well_name');
             $table->string('operator');
             $table->string('lsd');

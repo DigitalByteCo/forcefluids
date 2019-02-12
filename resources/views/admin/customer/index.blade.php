@@ -42,7 +42,6 @@
 										<th>Name</th>
 										<th>Email</th>
 										<th>Status</th>
-										<th><i class="fa fa-gear"></i></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -52,7 +51,6 @@
 										<td>{{$c->name}}</td>
 										<td>{{$c->email}}</td>
 										<td>{{$c->status}}</td>
-										<td><a href="{{route('admin.customer.edit', $c)}}" class="btn btn-sm btn-link"><i class="fa fa-edit"></i></a></td>
 									</tr>
 									@endforeach
 								</tbody>

@@ -13,7 +13,10 @@
                     <a href="{{route('admin.customer.index')}}"><i class="menu-icon fa fa-laptop"></i>Customer</a>
                 </li>
                 <li>
-                    <a href="{{route('admin.customer.index')}}"><i class="menu-icon fa fa-laptop"></i>Job</a>
+                    <a href="{{route('admin.job.index')}}"><i class="menu-icon fa fa-laptop"></i>Job</a>
+                </li>
+                <li>
+                    <a href="{{route('admin.event.create')}}"><i class="menu-icon fa fa-laptop"></i>Event</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

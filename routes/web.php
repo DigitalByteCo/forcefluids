@@ -11,15 +11,15 @@
 |
 */
 
-// Route::get('/', '');
 Auth::routes();
 
 Route::get('/cache', 'HomeController@cache');
 Route::group(['middleware' => ['web', 'auth']], function () {
-	
 	Route::name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
 		Route::resource('company', 'CompanyController', ['except' => ['destroy', 'show']]);
+		Route::resource('job', 'JobController', ['except' => ['destroy', 'show']]);
 		Route::resource('customer', 'CustomerController', ['only' => ['index', 'create', 'store']]);
+		Route::resource('event', 'EventController', ['only' => ['create', 'store']]);
 	});
 
 	Route::get('/home', 'HomeController@index')->name('home');
