@@ -15,16 +15,14 @@ Auth::routes();
 
 Route::get('/cache', 'HomeController@cache');
 Route::group(['middleware' => ['web', 'auth']], function () {
-	Route::name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
+	Route::namespace('Admin')->group(function () {
 		Route::resource('company', 'CompanyController', ['except' => ['destroy', 'show']]);
 		Route::resource('job', 'JobController', ['except' => ['destroy', 'show']]);
 		Route::resource('customer', 'CustomerController', ['only' => ['index', 'create', 'store']]);
 		Route::resource('event', 'EventController', ['only' => ['create', 'store']]);
+		Route::resource('pdf', 'PdfController', ['only' => ['create', 'store']]);
+		Route::post('pdf/mail', 'PdfController@sendMail')->name('mail.pdf');
 	});
-
-	Route::get('/home', 'HomeController@index')->name('home');
-	Route::post('/generate-pdf', 'HomeController@pdf')->name('pdf');
 	Route::get('/product', 'HomeController@product')->name('product');
-	Route::post('/mail-pdf', 'HomeController@mailPdf')->name('mail.pdf');
-	Route::get('/', 'HomeController@index');
+	Route::get('/', 'Admin\PdfController@create');
 });

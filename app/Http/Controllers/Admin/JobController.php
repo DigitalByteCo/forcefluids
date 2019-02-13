@@ -20,7 +20,7 @@ class JobController extends Controller
     {
         $user = auth()->user();
         $jobs = $user->jobs;
-        return view('admin.job.index', compact('jobs'));
+        return view('job.index', compact('jobs'));
     }
 
     /**
@@ -31,7 +31,7 @@ class JobController extends Controller
     public function create()
     {
         $companies = Company::all();
-        return view('admin.job.create', compact('companies'));
+        return view('job.create', compact('companies'));
     }
 
     /**
@@ -48,7 +48,7 @@ class JobController extends Controller
         $job->date = date('Y-m-d', strtotime($request->date));
         $customer->jobs()->save($job);
 
-        return redirect()->route('admin.job.index');
+        return redirect()->route('job.index');
     }
 
     /**
@@ -71,7 +71,7 @@ class JobController extends Controller
     public function edit(Job $job)
     {
         $companies = Company::all();
-        return view('admin.job.edit', compact('companies', 'job'));
+        return view('job.edit', compact('companies', 'job'));
     }
 
     /**
@@ -86,7 +86,7 @@ class JobController extends Controller
         $job->fill($request->all());
         $job->date = date('Y-m-d', strtotime($request->date));
         $job->save();
-        return redirect()->route('admin.job.index');
+        return redirect()->route('job.index');
 
     }
 

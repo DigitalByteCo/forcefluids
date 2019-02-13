@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 @section('content')
 <div class="breadcrumbs">
 	<div class="breadcrumbs-inner">
@@ -31,7 +31,7 @@
 				<div class="card">
 					<div class="card-header">
 						<strong class="card-title">All Customers</strong>
-						<a href="{{route('admin.customer.create')}}" class="btn btn-outline-primary pull-right">Add New</a>
+						<a href="{{route('customer.create')}}" class="btn btn-outline-primary pull-right">Add New</a>
 					</div>
 					<div class="card-body">
 						<div>

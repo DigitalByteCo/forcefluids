@@ -17,7 +17,7 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::all();
-        return view('admin.company.index', compact('companies'));
+        return view('company.index', compact('companies'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('admin.company.create');
+        return view('company.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class CompanyController extends Controller
         $company->updated_by = $user->id;
 
         $user->companies()->save($company);
-        return redirect()->route('admin.company.index');
+        return redirect()->route('company.index');
     }
 
     /**
@@ -68,7 +68,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return view('admin.company.edit', compact('company'));
+        return view('company.edit', compact('company'));
     }
 
     /**
@@ -85,7 +85,7 @@ class CompanyController extends Controller
         $company->updated_by = $request->user()->id;
         $company->save();
 
-        return redirect()->route('admin.company.index');
+        return redirect()->route('company.index');
     }
 
     /**

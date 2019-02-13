@@ -28,7 +28,7 @@ class EventController extends Controller
     {
         $user = auth()->user();
         $jobs = $user->jobs()->where('is_closed', false)->get();
-        return view('admin.event.create', compact('jobs'));
+        return view('event.create', compact('jobs'));
     }
 
     /**
@@ -52,7 +52,7 @@ class EventController extends Controller
             $job->is_closed = true;
             $job->save();
         }
-        return redirect()->route('admin.job.index');
+        return redirect()->route('job.index');
     }
 
     /**

@@ -18,7 +18,7 @@ foreach($data['product_name'] as $k => $v) {
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/custom.css?321') }}" type="text/css" media="screen" rel="stylesheet">
+    <link href="{{ asset('css/pdf-custom.css') }}" type="text/css" media="screen" rel="stylesheet">
 </head>
 <body id="pdf-div" class="green-color">
     <div class="container-fluid">

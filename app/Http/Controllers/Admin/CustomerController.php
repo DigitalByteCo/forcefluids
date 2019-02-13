@@ -19,7 +19,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = User::where('role_id', Role::CUSTOMER)->get();
-        return view('admin.customer.index', compact('customers'));
+        return view('customer.index', compact('customers'));
     }
 
     /**
@@ -29,7 +29,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('admin.customer.create');
+        return view('customer.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class CustomerController extends Controller
         $user->password = Hash::make('password@123');
         $user->save();
 
-        return redirect()->route('admin.customer.index');
+        return redirect()->route('customer.index');
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 @section('content')
 <div class="breadcrumbs">
     <div class="breadcrumbs-inner">
@@ -33,7 +33,7 @@
                         <strong class="card-title">Create Event</strong>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('admin.event.store')}}"  method="post" id="eventForm">
+                        <form action="{{route('event.store')}}"  method="post" id="eventForm">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label">Select Job</label>

@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 @section('content')
 <div class="breadcrumbs">
 	<div class="breadcrumbs-inner">
@@ -31,7 +31,7 @@
 				<div class="card">
 					<div class="card-header">
 						<strong class="card-title">All Companies</strong>
-						<a href="{{route('admin.company.create')}}" class="btn btn-outline-primary pull-right">Add New</a>
+						<a href="{{route('company.create')}}" class="btn btn-outline-primary pull-right">Add New</a>
 					</div>
 					<div class="card-body">
 						<div>
@@ -54,7 +54,7 @@
 										<td>{{$c->contact_person_email}}</td>
 										<td>{{$c->contact_person_phone}}</td>
 										<td>{{$c->address}}</td>
-										<td><a href="{{route('admin.company.edit', $c)}}" class="btn btn-sm btn-link"><i class="fa fa-edit"></i></a></td>
+										<td><a href="{{route('company.edit', $c)}}" class="btn btn-sm btn-link"><i class="fa fa-edit"></i></a></td>
 									</tr>
 									@endforeach
 								</tbody>

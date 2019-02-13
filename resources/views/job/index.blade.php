@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 @section('content')
 <div class="breadcrumbs">
 	<div class="breadcrumbs-inner">
@@ -31,8 +31,8 @@
 				<div class="card">
 					<div class="card-header">
 						<strong class="card-title">All Jobs</strong>
-						<a href="{{route('admin.event.create')}}" class="btn btn-success pull-right ml-1">Add Event</a>
-						<a href="{{route('admin.job.create')}}" class="btn btn-outline-primary pull-right">Create Job</a>&nbsp;
+						<a href="{{route('event.create')}}" class="btn btn-success pull-right ml-1">Add Event</a>
+						<a href="{{route('job.create')}}" class="btn btn-outline-primary pull-right">Create Job</a>&nbsp;
 					</div>
 					<div class="card-body">
 						<div>
@@ -63,7 +63,7 @@
 										<td>{{$j->operator}}</td>
 										<td>{{$j->lsd}}</td>
 										<td>{{$j->status}}</td>
-										<td><a href="{{route('admin.job.edit', $j)}}" class="btn btn-sm btn-link"><i class="fa fa-edit"></i></a></td>
+										<td><a href="{{route('job.edit', $j)}}" class="btn btn-sm btn-link"><i class="fa fa-edit"></i></a></td>
 									</tr>
 									@endforeach
 								</tbody>

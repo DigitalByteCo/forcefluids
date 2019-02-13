@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 @section('content')
 <div class="breadcrumbs">
 	<div class="breadcrumbs-inner">
@@ -33,7 +33,7 @@
 						<strong class="card-title">Update Company</strong>
 					</div>
 					<div class="card-body">
-						<form action="{{route('admin.company.update', $company)}}"  method="post">
+						<form action="{{route('company.update', $company)}}"  method="post">
 							@csrf
 							<input type="hidden" name="_method" value="put">
 							<div class="form-group">
