@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\User;
 use App\Model\Company;
 use App\Model\Job;
+use PDF;
 use App\Http\Requests\Admin\Job\StoreRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -99,5 +100,10 @@ class JobController extends Controller
     public function destroy($id)
     {
         dd($id);
+    }
+
+    public function getJobPdf(Job $job)
+    {
+        return PDF::loadView('pdf-template.job_report', compact('job'))->setPaper('a3', 'potrait')->stream();
     }
 }

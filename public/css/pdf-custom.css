@@ -133,3 +133,19 @@ table td {
     text-align: justify;
     padding: 5px;
 }
+
+#job-report-body ul{
+    list-style: none;
+}
+#job-report-body .pdf_header_div{
+    width: 400px;
+}
+#job-report-body .company_info_ul_parent{
+    display: block;
+    float: left;
+    clear: both;
+}
+#job-report-body .company_info_ul_parent .inline-li{
+    display: inline-block;
+    text-align: left;
+}

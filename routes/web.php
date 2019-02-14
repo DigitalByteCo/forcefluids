@@ -18,6 +18,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::namespace('Admin')->group(function () {
 		Route::resource('company', 'CompanyController', ['except' => ['destroy', 'show']]);
 		Route::resource('job', 'JobController', ['except' => ['destroy']]);
+		Route::get('job/{job}/pdf', 'JobController@getJobPdf')->name('job.pdf');
 		Route::resource('customer', 'CustomerController', ['only' => ['index', 'create', 'store']]);
 		Route::resource('event', 'EventController', ['only' => ['create', 'store']]);
 		Route::resource('pdf', 'PdfController', ['only' => ['create', 'store']]);

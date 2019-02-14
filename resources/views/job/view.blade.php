@@ -31,6 +31,7 @@
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">Job Details</strong>
+                        <a href="{{route('job.pdf', $job)}}" class="btn btn-outline-danger pull-right" target="_blank"><i class="fa fa-file-pdf-o"></i>&nbsp;Export As PDF</a>
                     </div>
                     <div class="card-body">
                         <div class="col-lg-12">
