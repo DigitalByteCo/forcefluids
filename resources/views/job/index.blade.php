@@ -41,14 +41,10 @@
 									<tr>
 										<th>Company Name</th>
 										<th>Contact Name</th>
-										<th>Person Email</th>
 										<th>Job Date</th>
 										<th>Job Time</th>
-										<th>Well Name</th>
-										<th>Operator</th>
-										<th>LSD</th>
 										<th>Status</th>
-										<th><i class="fa fa-gear"></i></th>
+										<th class="text-center"><i class="fa fa-gear"></i></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -56,14 +52,13 @@
 									<tr>
 										<td>{{$j->company->name}}</td>
 										<td>{{$j->contact_name}}</td>
-										<td>{{$j->contact_email}}</td>
 										<td>{{$j->date}}</td>
 										<td>{{$j->start_time.' to '.$j->end_time }}</td>
-										<td>{{$j->well_name}}</td>
-										<td>{{$j->operator}}</td>
-										<td>{{$j->lsd}}</td>
 										<td>{{$j->status}}</td>
-										<td><a href="{{route('job.edit', $j)}}" class="btn btn-sm btn-link"><i class="fa fa-edit"></i></a></td>
+										<td class="text-center">
+											<a href="{{route('job.edit', $j)}}" class="btn btn-sm btn-link"><i class="fa fa-edit"></i></a>
+											<a href="{{route('job.show', $j)}}" class="btn btn-sm btn-link"><i class="fa fa-eye"></i></a>
+										</td>
 									</tr>
 									@endforeach
 								</tbody>
