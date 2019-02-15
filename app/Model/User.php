@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\Role;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,5 +48,20 @@ class User extends Authenticatable
     public function getStatusAttribute()
     {
         return $this->is_active ? 'Active' : 'In Active';
+    }
+
+    public function isAdmin()
+    {
+        return ($this->role_id === Role::ADMIN);
+    }
+
+    public function isSales()
+    {
+        return ($this->role_id === Role::SALES);
+    }
+
+    public function isCustomer()
+    {
+        return ($this->role_id === Role::CUSTOMER);
     }
 }

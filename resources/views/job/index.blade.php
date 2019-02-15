@@ -31,8 +31,10 @@
 				<div class="card">
 					<div class="card-header">
 						<strong class="card-title">All Jobs</strong>
+						@if(auth()->user()->isCustomer())
 						<a href="{{route('event.create')}}" class="btn btn-success pull-right ml-1">Add Event</a>
 						<a href="{{route('job.create')}}" class="btn btn-outline-primary pull-right">Create Job</a>&nbsp;
+						@endif
 					</div>
 					<div class="card-body">
 						<div>

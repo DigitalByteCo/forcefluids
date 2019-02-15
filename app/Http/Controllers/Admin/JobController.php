@@ -104,6 +104,9 @@ class JobController extends Controller
 
     public function getJobPdf(Job $job)
     {
-        return PDF::loadView('pdf-template.job_report', compact('job'))->setPaper('a3', 'potrait')->stream();
+        if($job->customer_id === auth()->user()->id) {
+            return PDF::loadView('pdf-template.job_report', compact('job'))->setPaper('a3', 'potrait')->stream();
+        }
+        abort(404);
     }
 }

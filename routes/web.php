@@ -16,16 +16,18 @@ Auth::routes();
 Route::get('/cache', 'HomeController@cache');
 Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::namespace('Admin')->group(function () {
-		Route::resource('company', 'CompanyController', ['except' => ['destroy', 'show']]);
-		Route::resource('job', 'JobController', ['except' => ['destroy']]);
-		Route::get('job/{job}/pdf', 'JobController@getJobPdf')->name('job.pdf');
-		Route::resource('customer', 'CustomerController', ['only' => ['index', 'create', 'store']]);
-		Route::resource('event', 'EventController', ['only' => ['create', 'store']]);
+		Route::resource('company', 'CompanyController', ['except' => ['destroy', 'show']])->middleware('check.admin');
+		Route::resource('customer', 'CustomerController', ['only' => ['index', 'create', 'store']])->middleware('check.admin');
+
+		Route::resource('job', 'JobController', ['except' => ['destroy']])->middleware('check.customer');
+		Route::get('job/{job}/pdf', 'JobController@getJobPdf')->name('job.pdf')->middleware('check.customer');
+		Route::resource('event', 'EventController', ['only' => ['create', 'store']])->middleware('check.customer');
+
 		Route::resource('pdf', 'PdfController', ['only' => ['create', 'store']]);
 		Route::post('pdf/mail', 'PdfController@sendMail')->name('mail.pdf');
 	});
 	Route::get('/change-password', 'HomeController@getChangePassword')->name('get.change-pass');
 	Route::post('/change-password', 'HomeController@postChangePassword')->name('post.change-pass');
 	Route::get('/product', 'HomeController@product')->name('product');
-	Route::get('/', 'Admin\PdfController@create');
+	Route::get('/', 'HomeController@index');
 });

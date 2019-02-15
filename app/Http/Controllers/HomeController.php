@@ -20,6 +20,18 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $user = auth()->user();
+        if($user->isCustomer()) {
+            $jobs = $user->jobs;
+            return view('job.index', compact('jobs'));
+        } else {
+            $products = Product::all();
+            return view('pdf.create', compact('products'));
+        }
+    }
+
     public function product(Request $request)
     {
         $products = Product::all();

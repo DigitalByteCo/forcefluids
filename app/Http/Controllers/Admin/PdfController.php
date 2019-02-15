@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
 
 class PdfController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('check.pdf');
+	}
+
 	public function create()
 	{
 		$products = Product::all();

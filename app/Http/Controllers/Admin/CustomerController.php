@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\User;
 use App\Model\Role;
+use App\Mail\UserRegistration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\Customer\StoreRequest;
@@ -43,9 +44,12 @@ class CustomerController extends Controller
         $user = new User;
         $user->fill($request->all());
         $user->role_id = Role::CUSTOMER;
-        $user->password = Hash::make('password@123');
+        $password = str_random(6);
+        $user->password = Hash::make($password);
         $user->save();
 
+        Mail::to($user->email)->send(new UserRegistration($user, $password));
+        
         return redirect()->route('customer.index');
     }
 
