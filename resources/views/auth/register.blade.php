@@ -30,7 +30,7 @@
         <div class="container">
             <div class="login-content">
                 <div class="login-logo text-center">
-                    <a href="/">
+                    <a href="{{route('login')}}">
                         <img class="align-content" src="{{asset('images/logo.png')}}" style="width: 150px;">
                     </a>
                 </div>
@@ -74,7 +74,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
                         <div class="register-link m-t-15 text-center">
-                            <p>Already have account ? <a href="/login"> Sign in</a></p>
+                            <p>Already have account ? <a href="{{route('login')}}"> Sign in</a></p>
                         </div>
                     </form>
                 </div>

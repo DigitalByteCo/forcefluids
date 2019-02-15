@@ -35,8 +35,8 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/"><img src="{{asset('images/logo.png')}}" alt="Logo" style="width: 40px; margin-right: 10px;"><strong>Force Fluids</strong></a>
-                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('images/logo.png')}}" alt="Logo" style="width: 40px; margin-right: 10px;"><strong>Force Fluids</strong></a>
+                    <a class="navbar-brand hidden" href="{{route('home')}}"><img src="images/logo2.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                             <span>{{auth()->user()->name}}</span>
                         </a>
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="/change-password"><i class="fa fa-user"></i>Change Password</a>
+                            <a class="nav-link" href="{{route('get.change-pass')}}"><i class="fa fa-user"></i>Change Password</a>
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fa fa-power-off"></i>{{ __('Logout') }}
                             </a>

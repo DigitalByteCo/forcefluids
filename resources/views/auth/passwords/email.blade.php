@@ -37,12 +37,11 @@
                         @csrf
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" class="form-control" placeholder="Email">
                         </div>
                         @if (session('status'))
                         <span class="text-success">{{ session('status') }}</span>
                         @endif
-
                         <button type="submit" class="btn btn-primary btn-flat m-b-15">Submit</button>
                     </form>
                 </div>

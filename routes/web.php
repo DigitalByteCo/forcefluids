@@ -29,5 +29,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::get('/change-password', 'HomeController@getChangePassword')->name('get.change-pass');
 	Route::post('/change-password', 'HomeController@postChangePassword')->name('post.change-pass');
 	Route::get('/product', 'HomeController@product')->name('product');
-	Route::get('/', 'HomeController@index');
+	Route::get('/', 'HomeController@index')->name('home');
 });

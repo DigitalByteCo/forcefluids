@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\User;
 use App\Model\Role;
 use App\Mail\UserRegistration;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\Customer\StoreRequest;
