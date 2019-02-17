@@ -19,9 +19,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 		Route::resource('company', 'CompanyController', ['except' => ['destroy', 'show']])->middleware('check.admin');
 		Route::resource('customer', 'CustomerController', ['only' => ['index', 'create', 'store']])->middleware('check.admin');
 
-		Route::resource('job', 'JobController', ['except' => ['destroy']])->middleware('check.customer');
+		Route::resource('job', 'JobController', ['except' => ['destroy']]);
 		Route::get('job/{job}/pdf', 'JobController@getJobPdf')->name('job.pdf')->middleware('check.customer');
+		Route::get('job/additive', 'JobController@additive')->name('additive');
+		Route::get('/job-revenue', 'JobController@getClosedJob')->name('job-revenue.index')->middleware('check.customer');
+
 		Route::resource('event', 'EventController', ['only' => ['create', 'store']])->middleware('check.customer');
+
+		Route::resource('job.revenue', 'JobRevenueController', ['only' => ['create', 'store']])->middleware('check.customer');
 
 		Route::resource('pdf', 'PdfController', ['only' => ['create', 'store']]);
 		Route::post('pdf/mail', 'PdfController@sendMail')->name('mail.pdf');
@@ -31,3 +36,4 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::get('/product', 'HomeController@product')->name('product');
 	Route::get('/', 'HomeController@index')->name('home');
 });
+Route::get('/company-list', 'Admin\CompanyController@index')->name('company.ajax');

@@ -21,7 +21,8 @@ class CreateEventsTable extends Migration
             $table->string('wellhead_pressure');
             $table->string('circulation_pressure');
             $table->string('discharge_rate');
-            $table->string('additive_amount');
+            $table->integer('additive_id');
+            $table->string('gallons');
             $table->string('discharge_total');
             $table->string('description');
             $table->timestamps();

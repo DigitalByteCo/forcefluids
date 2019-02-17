@@ -1,3 +1,4 @@
+
 <!-- Left Panel -->
 <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
@@ -24,6 +25,9 @@
                 @if(auth()->user()->isCustomer())
                 <li>
                     <a href="{{route('event.create')}}"><i class="menu-icon fa fa-laptop"></i>Event</a>
+                </li>
+                <li>
+                    <a href="{{route('job-revenue.index')}}"><i class="menu-icon fa fa-laptop"></i>Job Revenue Manager</a>
                 </li>
                 @endif
             </ul>

@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'role_id' => ['required', 'integer', 'in:2,3'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'company_id' => ['required_if:role_id,3'],
         ]);
     }
 
@@ -64,11 +65,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'role_id' => $data['role_id'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if($user->role_id == 3)  {
+            $user->company_id = $data['company_id'];
+            $user->save();
+        }
+        return $user;
     }
 }

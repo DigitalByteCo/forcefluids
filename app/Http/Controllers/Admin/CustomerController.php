@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\User;
 use App\Model\Role;
+use App\Model\Company;
 use App\Mail\UserRegistration;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -31,7 +32,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.create');
+        $companies = Company::all();
+        return view('customer.create', compact('companies'));
     }
 
     /**

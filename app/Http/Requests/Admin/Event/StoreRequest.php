@@ -29,7 +29,8 @@ class StoreRequest extends FormRequest
             'wellhead_pressure' => 'required',
             'circulation_pressure' => 'required',
             'discharge_rate' => 'required',
-            'additive_amount' => 'required',
+            'additive_id' => 'required|integer',
+            'gallons' => 'required|numeric',
             'discharge_total' => 'required',
             'description' => 'required',
         ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Event;
+use App\Model\Additive;
 use App\Http\Requests\Admin\Event\StoreRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,8 +28,9 @@ class EventController extends Controller
     public function create()
     {
         $user = auth()->user();
+        $additives = Additive::all();
         $jobs = $user->jobs()->where('is_closed', false)->get();
-        return view('event.create', compact('jobs'));
+        return view('event.create', compact('jobs', 'additives'));
     }
 
     /**
@@ -42,13 +44,12 @@ class EventController extends Controller
         $user = $request->user();
         $job = $user->jobs()->find($request->job_id);
         if(empty($job)) {
-            abort('404');
+            abort('403');
         }
-
         $event = new Event;
         $event->fill($request->all());
         $user->events()->save($event);
-        if($request->submit == 'save_close') {
+        if(!empty($request->save_close)) {
             $job->is_closed = true;
             $job->save();
         }

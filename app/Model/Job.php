@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
 	protected $fillable = [
-		'company_id',
 		'contact_name',
 		'contact_email',
 		'contact_phone',
@@ -19,14 +18,19 @@ class Job extends Model
 		'lsd',
 	];
 
-	public function company()
+	public function customer()
 	{
-		return $this->belongsTo(Company::class);
+		return $this->belongsTo(User::class);
 	}
 
 	public function events()
 	{
 		return $this->hasMany(Event::class);
+	}
+
+	public function revenues()
+	{
+		return $this->hasMany(JobRevenue::class);
 	}
 
 	public function getStatusAttribute()

@@ -14,9 +14,12 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $companies = Company::all();
+        if($request->ajax()) {
+            return view('company.ajax', compact('companies'));
+        }
         return view('company.index', compact('companies'));
     }
 
@@ -38,13 +41,10 @@ class CompanyController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $user = $request->user();
-
         $company = new Company;
         $company->fill($request->all());
-        $company->updated_by = $user->id;
 
-        $user->companies()->save($company);
+        $company->save();
         return redirect()->route('company.index');
     }
 

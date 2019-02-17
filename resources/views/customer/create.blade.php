@@ -36,6 +36,17 @@
 						<form action="{{route('customer.store')}}"  method="post">
 							@csrf
 							<div class="form-group">
+								<label class="control-label">Company Name</label>
+								<select name="company_id" class="form-control col-sm-6">
+									@foreach($companies as $c)
+									<option value="{{$c->id}}">{{$c->name}}</option>
+									@endforeach
+								</select>
+								@if ($errors->has('company_id'))
+								<span class="text-danger">{{ $errors->first('company_id') }}</span>
+								@endif
+							</div>
+							<div class="form-group">
 								<label class="control-label">Name</label>
 								<input type="text" name="name" class="form-control col-sm-6">
 								@if ($errors->has('name'))

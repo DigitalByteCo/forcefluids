@@ -16,7 +16,6 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
-            $table->integer('user_id');
             $table->string('contact_person_name', 100)->nullable();
             $table->string('contact_person_email', 255)->nullable();
             $table->string('contact_person_phone', 20)->nullable();
@@ -25,7 +24,7 @@ class CreateCompaniesTable extends Migration
             $table->string('city', 20)->nullable();
             $table->string('state', 20)->nullable();
             $table->string('zipcode', 10)->nullable();
-            $table->integer('updated_by');
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

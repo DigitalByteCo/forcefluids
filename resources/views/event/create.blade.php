@@ -33,11 +33,11 @@
                         <strong class="card-title">Create Event</strong>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('event.store')}}"  method="post" id="eventForm">
+                        <form id="eventForm" action="{{route('event.store')}}"  method="post">
                             @csrf
                             <div class="form-group">
                                 <label class="control-label">Select Job</label>
-                                <select name="job_id" class="form-control">
+                                <select name="job_id" class="form-control col-sm-6">
                                     @foreach($jobs as $j)
                                     <option value="{{$j->id}}">{{$j->well_name}}</option>
                                     @endforeach
@@ -75,10 +75,21 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Additive Amount</label>
-                                <input type="text" name="additive_amount" class="form-control col-sm-6">
-                                @if ($errors->has('additive_amount'))
-                                <span class="text-danger">{{ $errors->first('additive_amount') }}</span>
+                                <label class="control-label">Additive Type</label>
+                                <select name="additive_id" class="form-control col-sm-6">
+                                    @foreach($additives as $a)
+                                    <option value="{{$a->id}}">{{$a->name}}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('additive_id'))
+                                <span class="text-danger">{{ $errors->first('additive_id') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Gallons</label>
+                                <input type="text" name="gallons" class="form-control col-sm-6">
+                                @if ($errors->has('gallons'))
+                                <span class="text-danger">{{ $errors->first('gallons') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
@@ -96,8 +107,8 @@
                                 @endif
                             </div>
                             <div class="form-actions form-group">
-                                <button type="submit" name="submit" class="btn btn-outline-success" value="save">Save</button>
-                                <button type="submit" name="submit" class="btn btn-outline-success" value="save_close">Save & Close</button>
+                                <button type="submit" name="save" class="btn btn-outline-success" value="1">Save Event</button>
+                                <button type="submit" name="save_close" class="btn btn-outline-success btn-submit" value="1">Save & Close Job</button>
                             </div>
                         </form>
                     </div>
@@ -108,7 +119,7 @@
 </div>
 @endsection
 @section('scripts')
-<script>
+<script type="text/javascript">
     var $ = jQuery;
     $(document).ready(function(){
         $('.time').timepicker({

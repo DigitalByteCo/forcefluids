@@ -16,7 +16,7 @@ class CheckPdfAuthority
     public function handle($request, Closure $next)
     {
         if($request->user()->isCustomer()) {
-            abort(404);
+            abort(403);
         }
         return $next($request);
     }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\User;
-use App\Model\Company;
 use App\Model\Job;
 use PDF;
 use App\Http\Requests\Admin\Job\StoreRequest;
@@ -31,8 +30,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        $companies = Company::all();
-        return view('job.create', compact('companies'));
+        return view('job.create');
     }
 
     /**
@@ -71,8 +69,7 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        $companies = Company::all();
-        return view('job.edit', compact('companies', 'job'));
+        return view('job.edit', compact('job'));
     }
 
     /**
@@ -107,6 +104,14 @@ class JobController extends Controller
         if($job->customer_id === auth()->user()->id) {
             return PDF::loadView('pdf-template.job_report', compact('job'))->setPaper('a3', 'potrait')->stream();
         }
-        abort(404);
+        abort(403);
     }
+
+    public function getClosedJob()
+    {
+        $user = auth()->user();
+        $jobs = $user->jobs()->where('is_closed', true)->get();
+        return view('job.close-jobs', compact('jobs'));
+    }
+
 }

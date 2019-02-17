@@ -39,13 +39,15 @@
                         @csrf
                         <div class="form-group">
                             <label>Role</label>
-                            <select class="form-control" name="role_id">
+                            <select class="form-control" name="role_id" id="role_id">
                                 <option value="2">Sales Representative</option>
                                 <option value="3">Customer</option>
                             </select>
                             @if ($errors->has('role_id'))
                             <span class="text-danger">{{ $errors->first('role_id') }}</span>
                             @endif
+                        </div>
+                        <div class="form-group company_select">
                         </div>
                         <div class="form-group">
                             <label>User Name</label>
@@ -87,6 +89,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="{{asset('admin/js/main.js')}}"></script>
-
+    <script type="text/javascript">
+        var $ = jQuery;
+        $(document).ready(function(){
+            $("#role_id").change(function(){
+                var $id = $(this).val();
+                if($id == 3) {
+                    $.ajax({
+                        url: "{{route('company.ajax')}}",
+                        type: 'get',
+                        success: function(html){
+                            $(".company_select").html(html);
+                        }
+                    });
+                } else {
+                    $(".company_select").html("");
+                }
+            });
+        });
+    </script>
 </body>
 </html>

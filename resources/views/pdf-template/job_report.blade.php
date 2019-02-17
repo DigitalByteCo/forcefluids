@@ -32,12 +32,12 @@
         <table>
             <tbody>
                 <tr>
-                    <td><label>Company :</label>&nbsp;<span>{{$job->company->name}}</span></td>
-                    <td><label>Contact :</label>&nbsp;<span>{{$job->company->contact_person_name}}</span></td>
+                    <td><label>Company :</label>&nbsp;<span>{{$job->customer->company->name}}</span></td>
+                    <td><label>Contact :</label>&nbsp;<span>{{$job->customer->company->contact_person_name}}</span></td>
                 </tr>
                 <tr>
-                    <td><label>Email :</label>&nbsp;<span>{{$job->company->contact_person_email}}</span></td>
-                    <td><label>Phone :</label>&nbsp;<span>{{$job->company->contact_person_phone}}</span></td>
+                    <td><label>Email :</label>&nbsp;<span>{{$job->customer->company->contact_person_email}}</span></td>
+                    <td><label>Phone :</label>&nbsp;<span>{{$job->customer->company->contact_person_phone}}</span></td>
                 </tr>
             </tbody>
         </table>
@@ -50,7 +50,7 @@
             <tbody>
                 <tr>
                     <td><label>Date :</label>&nbsp;<span>{{$job->date}}</span></td>
-                    <td><label>Well Name :</label>&nbsp;<span>{{$job->company->contact_person_email}}</span></td>
+                    <td><label>Well Name :</label>&nbsp;<span>{{$job->well_name}}</span></td>
                 </tr>
                 <tr>
                     <td><label>Start Time :</label>&nbsp;<span>{{$job->start_time}}</span></td>
@@ -76,7 +76,8 @@
                         <th>Wellhead Pressure(PSI)</th>
                         <th>Circulation Pressure(PSI)</th>
                         <th>Discharge Rate(BPM)</th>
-                        <th>Additive Total</th>
+                        <th>Additive Type</th>
+                        <th>Gallons</th>
                         <th>Discharge Total</th>
                         <th>Description Of Stage Or Event</th>
                     </tr>
@@ -88,7 +89,8 @@
                         <td>{{$e->wellhead_pressure}}</td>
                         <td>{{$e->circulation_pressure}}</td>
                         <td>{{$e->discharge_rate}}</td>
-                        <td>{{$e->additive_amount}}</td>
+                        <td>{{$e->additive->name}}</td>
+                        <td>{{$e->gallons}} Gallon(s)</td>
                         <td>{{$e->discharge_total}}</td>
                         <td>{{$e->description}}</td>
                     </tr>

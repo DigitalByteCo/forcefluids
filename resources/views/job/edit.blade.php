@@ -37,17 +37,6 @@
                             @csrf
                             <input type="hidden" name="_method" value="put">
                             <div class="form-group">
-                                <label class="control-label">Company Name</label>
-                                <select name="company_id" class="form-control">
-                                    @foreach($companies as $c)
-                                    <option value="{{$c->id}}">{{$c->name}}</option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('company_id'))
-                                <span class="text-danger">{{ $errors->first('company_id') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
                                 <label class="control-label">Contact Name</label>
                                 <input type="text" name="contact_name" class="form-control col-sm-6" value="{{$job->contact_name}}">
                                 @if ($errors->has('contact_name'))
