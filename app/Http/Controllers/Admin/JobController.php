@@ -16,10 +16,19 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = auth()->user();
-        $jobs = $user->jobs;
+        if($user->isSales()) {
+            $query = Job::select("jobs.*");
+            if(!empty($request->q)) {
+                $query = $query->join('users', 'users.id', '=', 'jobs.customer_id')
+                ->where('users.name', 'like', '%'.$request->q.'%');
+            }
+            $jobs = $query->get();
+        } else {
+            $jobs = $user->jobs;
+        }
         return view('job.index', compact('jobs'));
     }
 
@@ -30,6 +39,9 @@ class JobController extends Controller
      */
     public function create()
     {
+        $user = auth()->user();
+        $this->checkSalesUser($user);
+
         return view('job.create');
     }
 
@@ -41,6 +53,9 @@ class JobController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        $user = auth()->user();
+        $this->checkSalesUser($user);
+
         $customer = $request->user();
         $job = new Job;
         $job->fill($request->all());
@@ -69,6 +84,9 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
+        $user = auth()->user();
+        $this->checkSalesUser($user);
+
         return view('job.edit', compact('job'));
     }
 
@@ -81,6 +99,9 @@ class JobController extends Controller
      */
     public function update(StoreRequest $request, Job $job)
     {
+        $user = auth()->user();
+        $this->checkSalesUser($user);
+
         $job->fill($request->all());
         $job->date = date('Y-m-d', strtotime($request->date));
         $job->save();
@@ -101,7 +122,10 @@ class JobController extends Controller
 
     public function getJobPdf(Job $job)
     {
-        if($job->customer_id === auth()->user()->id) {
+        $user = auth()->user();
+        $this->checkSalesUser($user);
+
+        if($job->customer_id === $user->id) {
             return PDF::loadView('pdf-template.job_report', compact('job'))->setPaper('a3', 'potrait')->stream();
         }
         abort(403);
@@ -110,8 +134,16 @@ class JobController extends Controller
     public function getClosedJob()
     {
         $user = auth()->user();
+        $this->checkSalesUser($user);
         $jobs = $user->jobs()->where('is_closed', true)->get();
         return view('job.close-jobs', compact('jobs'));
+    }
+
+    private function checkSalesUser($user)
+    {
+        if($user->isSales()) {
+            abort(403);
+        }
     }
 
 }
