@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card">
-					@if(auth()->user()->isCustomer())
+					@if(auth()->user()->isCustomer() || auth()->user()->isAdmin())
 					@include('job.customer-jobs', compact('jobs'))
 					@endif
 					@if(auth()->user()->isSales())

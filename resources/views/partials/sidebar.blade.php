@@ -17,12 +17,10 @@
                     <a href="{{route('customer.index')}}"><i class="menu-icon fa fa-laptop"></i>Customer</a>
                 </li>
                 @endif
-                @if(auth()->user()->isCustomer() || auth()->user()->isSales())
                 <li>
                     <a href="{{route('job.index')}}"><i class="menu-icon fa fa-laptop"></i>Job</a>
                 </li>
-                @endif
-                @if(auth()->user()->isCustomer())
+                @if(auth()->user()->isAdmin() || auth()->user()->isCustomer())
                 <li>
                     <a href="{{route('event.create')}}"><i class="menu-icon fa fa-laptop"></i>Event</a>
                 </li>

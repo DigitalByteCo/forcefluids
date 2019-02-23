@@ -20,13 +20,13 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 		Route::resource('customer', 'CustomerController', ['only' => ['index', 'create', 'store']])->middleware('check.admin');
 
 		Route::resource('job', 'JobController', ['except' => ['destroy']]);
-		Route::get('job/{job}/pdf', 'JobController@getJobPdf')->name('job.pdf')->middleware('check.customer');
+		Route::get('job/{job}/pdf', 'JobController@getJobPdf')->name('job.pdf')->middleware('check.job');
 		Route::get('job/additive', 'JobController@additive')->name('additive');
-		Route::get('/job-revenue', 'JobController@getClosedJob')->name('job-revenue.index')->middleware('check.customer');
+		Route::get('/job-revenue', 'JobController@getClosedJob')->name('job-revenue.index')->middleware('check.job-revenue');
 
-		Route::resource('event', 'EventController', ['only' => ['create', 'store']])->middleware('check.customer');
+		Route::resource('event', 'EventController', ['only' => ['create', 'store']])->middleware('check.event');
 
-		Route::resource('job.revenue', 'JobRevenueController', ['only' => ['create', 'store']])->middleware('check.customer');
+		Route::resource('job.revenue', 'JobRevenueController', ['only' => ['create', 'store']])->middleware('check.job');
 
 		Route::resource('pdf', 'PdfController', ['only' => ['create', 'store']]);
 		Route::post('pdf/mail', 'PdfController@sendMail')->name('mail.pdf');

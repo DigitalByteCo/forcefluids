@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckCustomerUser
+class CheckJobAuthority
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class CheckCustomerUser
      */
     public function handle($request, Closure $next)
     {
-        if($request->user()->isCustomer()) {
+        if($request->user()->isCustomer() || $request->user()->isAdmin()) {
             return $next($request);
         }
         abort(403);

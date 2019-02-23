@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a3679ee4927f7378661f206e87addc1e",
-    "content-hash": "d660b1acf457d742342f328dac81db5b",
+    "hash": "f85ca91df9dc55bf3bd0e118c7dba45d",
+    "content-hash": "970ad19a1981dca32b6df2fa5a638346",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1021,6 +1021,70 @@
             "time": "2018-12-12 13:12:06"
         },
         {
+            "name": "laravel/socialite",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/socialite.git",
+                "reference": "7581c57a60742f423a68362c79d507028f989bd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/7581c57a60742f423a68362c79d507028f989bd7",
+                "reference": "7581c57a60742f423a68362c79d507028f989bd7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "~6.0",
+                "illuminate/contracts": "~5.7.0|~5.8.0",
+                "illuminate/http": "~5.7.0|~5.8.0",
+                "illuminate/support": "~5.7.0|~5.8.0",
+                "league/oauth1-client": "~1.0",
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Socialite\\SocialiteServiceProvider"
+                    ],
+                    "aliases": {
+                        "Socialite": "Laravel\\Socialite\\Facades\\Socialite"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Socialite\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel wrapper around OAuth 1 & OAuth 2 libraries.",
+            "homepage": "https://laravel.com",
+            "keywords": [
+                "laravel",
+                "oauth"
+            ],
+            "time": "2019-02-14 16:57:39"
+        },
+        {
             "name": "laravel/tinker",
             "version": "v1.0.8",
             "source": {
@@ -1224,6 +1288,69 @@
                 "storage"
             ],
             "time": "2018-11-23 23:41:29"
+        },
+        {
+            "name": "league/oauth1-client",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/oauth1-client.git",
+                "reference": "fca5f160650cb74d23fc11aa570dd61f86dcf647"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/oauth1-client/zipball/fca5f160650cb74d23fc11aa570dd61f86dcf647",
+                "reference": "fca5f160650cb74d23fc11aa570dd61f86dcf647",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9",
+                "phpunit/phpunit": "^4.0",
+                "squizlabs/php_codesniffer": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\OAuth1\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Corlett",
+                    "email": "bencorlett@me.com",
+                    "homepage": "http://www.webcomm.com.au",
+                    "role": "Developer"
+                }
+            ],
+            "description": "OAuth 1.0 Client Library",
+            "keywords": [
+                "Authentication",
+                "SSO",
+                "authorization",
+                "bitbucket",
+                "identity",
+                "idp",
+                "oauth",
+                "oauth1",
+                "single sign on",
+                "trello",
+                "tumblr",
+                "twitter"
+            ],
+            "time": "2016-08-17 00:36:58"
         },
         {
             "name": "monolog/monolog",
