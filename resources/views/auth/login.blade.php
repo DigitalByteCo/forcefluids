@@ -35,6 +35,9 @@
                     </a>
                 </div>
                 <div class="login-form">
+                    @if (session('error'))
+                    <span class="text-danger">{{ session('error') }}</span>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
@@ -61,6 +64,11 @@
 
                         </div>
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
+                        <div class="social-login-content">
+                            <div class="social-button">
+                                <a href="{{route('auth.google')}}" class="btn social gsuite btn-flat btn-addon mb-3"><i class="ti-google"></i>Sign in with G Suite</a>
+                            </div>
+                        </div>
                         <div class="register-link m-t-15 text-center">
                             <p>Don't have account ? <a href="{{route('register')}}"> Sign Up Here</a></p>
                         </div>

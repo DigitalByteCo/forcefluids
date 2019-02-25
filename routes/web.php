@@ -14,6 +14,9 @@
 Auth::routes();
 
 Route::get('/cache', 'HomeController@cache');
+Route::get('login/google', 'Auth\LoginController@redirectToProvider')->name('auth.google');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::namespace('Admin')->group(function () {
 		Route::resource('company', 'CompanyController', ['except' => ['destroy', 'show']])->middleware('check.admin');
