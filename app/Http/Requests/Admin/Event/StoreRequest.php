@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'job_id' => 'required|integer',
-            'time' => 'required|date_format:H:i',
+            'time' => 'required|date_format:G:i',
             'wellhead_pressure' => 'required',
             'circulation_pressure' => 'required',
             'discharge_rate' => 'required',

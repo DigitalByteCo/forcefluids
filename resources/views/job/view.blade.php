@@ -63,7 +63,7 @@
                                         <th>Wellhead Pressure</th>
                                         <th>Circulation Pressure</th>
                                         <th>Discharge Rate</th>
-                                        <th>Additive Amount</th>
+                                        <th>Additive Type</th>
                                         <th>Discharge Total</th>
                                         <th>Description</th>
                                     </tr>
@@ -75,7 +75,7 @@
                                         <td>{{$e->wellhead_pressure}}</td>
                                         <td>{{$e->circulation_pressure}}</td>
                                         <td>{{$e->discharge_rate}}</td>
-                                        <td>{{$e->additive_amount}}</td>
+                                        <td>{{$e->additive->name}}</td>
                                         <td>{{$e->discharge_total}}</td>
                                         <td>{{$e->description}}</td>
                                     </tr>

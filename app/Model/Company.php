@@ -26,4 +26,9 @@ class Company extends Model
 		$address .= $this->zipcode;
 		return $address;
 	}
+
+	public function customers()
+	{
+		return $this->hasMany(User::class, 'company_id');
+	}
 }

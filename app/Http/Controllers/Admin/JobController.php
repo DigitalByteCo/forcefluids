@@ -123,9 +123,9 @@ class JobController extends Controller
     public function getJobPdf(Job $job)
     {
         $user = auth()->user();
-        $this->checkSalesUser($user);
+        // $this->checkSalesUser($user);
 
-        if($job->customer_id === $user->id) {
+        if($job->customer_id == $user->id || $user->isSales() || $user->isAdmin()) {
             return PDF::loadView('pdf-template.job_report', compact('job'))->setPaper('a3', 'potrait')->stream();
         }
         abort(403);

@@ -23,7 +23,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 		Route::resource('customer', 'CustomerController', ['only' => ['index', 'create', 'store']])->middleware('check.admin');
 
 		Route::resource('job', 'JobController', ['except' => ['destroy']]);
-		Route::get('job/{job}/pdf', 'JobController@getJobPdf')->name('job.pdf')->middleware('check.job');
+		Route::get('job/{job}/pdf', 'JobController@getJobPdf')->name('job.pdf');
 		Route::get('job/additive', 'JobController@additive')->name('additive');
 		Route::get('/job-revenue', 'JobController@getClosedJob')->name('job-revenue.index')->middleware('check.job-revenue');
 
