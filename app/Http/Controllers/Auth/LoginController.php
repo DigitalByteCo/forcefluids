@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Model\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-// use ColoredCow\LaravelGSuite\Traits\GSuiteLogin;
-// use ColoredCow\LaravelGSuite\Facades\GSuiteUserService;
 use Illuminate\Http\Request;
 use Auth;
 use Socialite;
@@ -40,7 +38,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+    	$this->middleware('guest')->except('logout');
     }
 
     /**
@@ -50,8 +48,14 @@ class LoginController extends Controller
      */
     public function redirectToProvider()
     {
+        $params = [
+         // 'hd' => env('GOOGLE_CLIENT_HD'),
+            'access_type' => 'offline',
+        ];
+
         return Socialite::driver('google')
-        ->with(['hd' => env('GOOGLE_CLIENT_HD')])
+        ->scopes(["https://www.googleapis.com/auth/drive"])
+        ->with($params)
         ->redirect();
     }
 
@@ -62,13 +66,16 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('google')->user();
-        $user = User::where('email', $user->email)->first();
-        if($user) {
-            Auth::loginUsingId($user->id);
-            
-            return redirect('/');
-        }
-        return redirect()->route('login')->with('error', 'User not found');
+    	$user = Socialite::driver('google')->user();
+    	$token = $user->token;
+    	$user = User::where('email', $user->email)->first();
+    	if($user) {
+    		$user->refresh_token = $token;
+    		$user->save();
+    		Auth::loginUsingId($user->id);
+
+    		return redirect('/');
+    	}
+    	return redirect()->route('login')->with('error', 'User not found');
     }
 }
