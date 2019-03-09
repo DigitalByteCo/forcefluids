@@ -6,26 +6,26 @@
             <ul class="nav navbar-nav">
                 @if(!auth()->user()->isCustomer())
                 <li>
-                    <a href="{{route('pdf.create')}}"><i class="menu-icon fa fa-laptop"></i>New Sales Order</a>
+                    <a href="{{route('pdf.create')}}"><i class="menu-icon fa fa-plus"></i>New Sales Order</a>
                 </li>
                 @endif
                 @if(auth()->user()->isAdmin())
                 <li>
-                    <a href="{{route('company.index')}}"><i class="menu-icon fa fa-laptop"></i>Company</a>
+                    <a href="{{route('company.index')}}"><i class="menu-icon fa fa-address-card-o"></i>Company</a>
                 </li>
                 <li>
-                    <a href="{{route('customer.index')}}"><i class="menu-icon fa fa-laptop"></i>Customer</a>
+                    <a href="{{route('customer.index')}}"><i class="menu-icon fa fa-users"></i>Customer</a>
                 </li>
                 @endif
                 <li>
-                    <a href="{{route('job.index')}}"><i class="menu-icon fa fa-laptop"></i>Job</a>
+                    <a href="{{route('job.index')}}"><i class="menu-icon fa fa-cogs"></i>Job</a>
                 </li>
                 @if(auth()->user()->isAdmin() || auth()->user()->isCustomer())
                 <li>
-                    <a href="{{route('event.create')}}"><i class="menu-icon fa fa-laptop"></i>Event</a>
+                    <a href="{{route('event.create')}}"><i class="menu-icon fa fa-hourglass-end"></i>Event</a>
                 </li>
                 <li>
-                    <a href="{{route('job-revenue.index')}}"><i class="menu-icon fa fa-laptop"></i>Job Revenue Manager</a>
+                    <a href="{{route('job-revenue.index')}}"><i class="menu-icon fa fa-line-chart"></i>Job Revenue Manager</a>
                 </li>
                 @endif
             </ul>

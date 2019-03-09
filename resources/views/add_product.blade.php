@@ -22,7 +22,7 @@
     </div>
     <div class="form-group">
         <label for="product_application_{{$data['prod_no']}}" class=" form-control-label">Product Application</label>
-        <input type="text" id="product_application_{{$data['prod_no']}}" name="product_application[]" placeholder="Product Application" class="form-control">
+        <input type="text" id="product_application_{{$data['prod_no']}}" name="product_application[]" class="form-control">
     </div>
     <div class="form-group">
         <label for="qty_{{$data['prod_no']}}" class="form-control-label">Qty</label>

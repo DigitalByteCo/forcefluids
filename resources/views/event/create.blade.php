@@ -14,8 +14,8 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Event</a></li>
+                            <li><a href="{{route('home')}}">Dashboard</a></li>
+                            <li class="active">Event</li>
                             <li class="active">Create</li>
                         </ol>
                     </div>
@@ -93,13 +93,6 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Discharge Total</label>
-                                <input type="text" name="discharge_total" class="form-control col-sm-6">
-                                @if ($errors->has('discharge_total'))
-                                <span class="text-danger">{{ $errors->first('discharge_total') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
                                 <label class="control-label">Description</label>
                                 <textarea name="description" class="form-control col-sm-6"></textarea>
                                 @if ($errors->has('description'))
@@ -117,6 +110,27 @@
         </div>
     </div>
 </div>
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Job Discharge Total</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" id="discharge_total" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary saveEventModal">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('scripts')
 <script type="text/javascript">
@@ -125,6 +139,20 @@
         $('.time').timepicker({
             showMeridian: false,
             explicitMode: true
+        });
+
+        $('[name="save_close"]').click(function(e){
+            e.preventDefault();
+            $(".modal").modal('show');
+        });
+        $(".saveEventModal").click(function(){
+            var discharge_total = $("#discharge_total").val();
+            if(discharge_total != '') {
+                var html = "<input type='hidden' name='discharge_total' value='"+discharge_total+"'>";
+                html = html + "<input type='hidden' name='save_close' value='1'>";
+                $("#eventForm").append(html);
+                $("#eventForm").submit();
+            }
         });
     });
 </script>

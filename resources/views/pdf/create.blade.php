@@ -15,8 +15,8 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Sales Order</a></li>
+                            <li><a href="{{route('home')}}">Dashboard</a></li>
+                            <li class="active">Sales Order</li>
                             <li class="active">Create</li>
                         </ol>
                     </div>
@@ -40,15 +40,15 @@
                                 <div class="col-md-6 mb-5">
                                     <div class="form-group">
                                         <label for="date" class=" form-control-label">Date</label>
-                                        <input type="text" id="date" name="date" placeholder="Date" class="form-control">
+                                        <input type="text" id="date" name="date" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="requested_by" class=" form-control-label">Requested By</label>
-                                        <input type="text" id="requested_by" name="requested_by" placeholder="Requested By" class="form-control">
+                                        <input type="text" id="requested_by" name="requested_by" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="company" class=" form-control-label">Company</label>
-                                        <input type="text" id="company" name="company" placeholder="Company" class="form-control">
+                                        <input type="text" id="company" name="company" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="pickup_location" class=" form-control-label">Pickup Location</label>
@@ -63,15 +63,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="force_team_sales_rep" class=" form-control-label">Force Team Sales Rep</label>
-                                        <input type="text" id="force_team_sales_rep" name="force_team_sales_rep" placeholder="Force Team Sales Rep" class="form-control">
+                                        <input type="text" id="force_team_sales_rep" name="force_team_sales_rep" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="purchase_approved_by" class=" form-control-label">Purchase Approved By</label>
-                                        <input type="text" id="purchase_approved_by" name="purchase_approved_by" placeholder="Purchase Approved By" class="form-control">
+                                        <input type="text" id="purchase_approved_by" name="purchase_approved_by" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="po_or_na" class="form-control-label">PO # or N/A</label>
-                                        <input type="text" id="po_or_na" name="po_or_na" placeholder="PO # or N/A" class="form-control">
+                                        <input type="text" id="po_or_na" name="po_or_na" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -81,29 +81,29 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="driver_name" class=" form-control-label">Driver Name or NA</label>
-                                        <input type="text" id="driver_name" name="driver_name" placeholder="Driver Name or NA" class="form-control">
+                                        <input type="text" id="driver_name" name="driver_name" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="street_address" class=" form-control-label">Street Address</label>
-                                        <input type="text" id="street_address" name="street_address" placeholder="Street Address" class="form-control">
+                                        <input type="text" id="street_address" name="street_address" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="city_st_zip" class=" form-control-label">City, State, Zip</label>
-                                        <input type="text" id="city_st_zip" name="city_st_zip" placeholder="City, State, Zip" class="form-control">
+                                        <input type="text" id="city_st_zip" name="city_st_zip" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="phone_no" class=" form-control-label">Phone Number</label>
-                                        <input type="text" id="phone_no" name="phone_no" placeholder="Phone No." class="form-control">
+                                        <input type="text" id="phone_no" name="phone_no" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="please_note" class=" form-control-label">Customer Representative</label>
-                                        <input type="text" id="cust_rep" name="cust_rep" placeholder="Customer Representative" class="form-control">
+                                        <input type="text" id="cust_rep" name="cust_rep" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="please_note" class=" form-control-label">Warehouse Supervisor</label>
-                                        <input type="text" id="warehouse_supervisor" name="warehouse_supervisor" placeholder="Warehouse Supervisor" class="form-control">
+                                        <input type="text" id="warehouse_supervisor" name="warehouse_supervisor" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="product_application_1" class=" form-control-label">Product Application</label>
-                                        <input type="text" id="product_application_1" name="product_application[]" placeholder="Product Application" class="form-control">
+                                        <input type="text" id="product_application_1" name="product_application[]" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="qty_1" class="form-control-label">Qty</label>
@@ -178,7 +178,7 @@
             $("#price_"+i).val(price);
             if(prod_val == 'other') {
                 var sub_no = i - 1;
-                $("#other_prod_div_"+i).html('<label for="other_prod_'+i+'" class=" form-control-label">Product Name</label> <input type="text" id="other_prod_'+i+'" name="other_prod['+sub_no+']" placeholder="Product Name" class="form-control">')
+                $("#other_prod_div_"+i).html('<label for="other_prod_'+i+'" class=" form-control-label">Product Name</label> <input type="text" id="other_prod_'+i+'" name="other_prod['+sub_no+']" class="form-control">')
             } else {
                 $("#other_prod_div_"+i).html(" ");
             }

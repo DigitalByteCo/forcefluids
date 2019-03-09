@@ -14,8 +14,8 @@
 				<div class="page-header float-right">
 					<div class="page-title">
 						<ol class="breadcrumb text-right">
-							<li><a href="#">Dashboard</a></li>
-							<li><a href="#">Customer</a></li>
+							<li><a href="{{route('home')}}">Dashboard</a></li>
+							<li><a href="{{route('customer.index')}}">Customer</a></li>
 							<li class="active">Create</li>
 						</ol>
 					</div>

@@ -14,8 +14,8 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Job</a></li>
+                            <li><a href="{{route('home')}}">Dashboard</a></li>
+                            <li><a href="{{route('job.index')}}">Job</a></li>
                             <li class="active">View</li>
                         </ol>
                     </div>
@@ -76,7 +76,6 @@
                                         <td>{{$e->circulation_pressure}}</td>
                                         <td>{{$e->discharge_rate}}</td>
                                         <td>{{$e->additive->name}}</td>
-                                        <td>{{$e->discharge_total}}</td>
                                         <td>{{$e->description}}</td>
                                     </tr>
                                     @endforeach

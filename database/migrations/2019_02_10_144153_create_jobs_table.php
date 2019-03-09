@@ -25,6 +25,7 @@ class CreateJobsTable extends Migration
             $table->string('well_name');
             $table->string('operator');
             $table->string('lsd');
+            $table->string('discharge_total');
             $table->boolean('is_closed')->default(false);
             $table->timestamps();
         });

@@ -5,7 +5,7 @@
 	<div>
 		<form action="{{route('job.index')}}" method="get" class="form-inline mb-2">
 			<div class="form-group">
-				<input type="text" name="q" class="form-control" placeholder="Customer Name">
+				<input type="text" name="q" class="form-control">
 			</div>
 			<button type="submit" class="btn btn-outline-primary ml-3">Search</button>
 		</form>

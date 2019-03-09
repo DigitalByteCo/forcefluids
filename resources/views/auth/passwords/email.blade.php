@@ -37,7 +37,7 @@
                         @csrf
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" class="form-control">
                         </div>
                         @if (session('status'))
                         <span class="text-success">{{ session('status') }}</span>

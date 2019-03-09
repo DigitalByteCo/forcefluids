@@ -51,6 +51,7 @@ class EventController extends Controller
         $user->events()->save($event);
         if(!empty($request->save_close)) {
             $job->is_closed = true;
+            $job->discharge_total = $request->discharge_total;
             $job->save();
         }
         return redirect()->route('job.index');

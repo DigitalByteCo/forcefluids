@@ -15,6 +15,7 @@ class Job extends Model
 		'end_time',
 		'well_name',
 		'operator',
+		'discharge_total',
 		'lsd',
 	];
 

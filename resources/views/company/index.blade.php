@@ -14,7 +14,7 @@
 				<div class="page-header float-right">
 					<div class="page-title">
 						<ol class="breadcrumb text-right">
-							<li><a href="#">Dashboard</a></li>
+							<li><a href="{{route('home')}}">Dashboard</a></li>
 							<li><a href="#">Company</a></li>
 							<li class="active">List</li>
 						</ol>

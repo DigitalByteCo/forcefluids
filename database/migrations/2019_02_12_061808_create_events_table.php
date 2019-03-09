@@ -23,7 +23,6 @@ class CreateEventsTable extends Migration
             $table->string('discharge_rate');
             $table->integer('additive_id');
             $table->string('gallons');
-            $table->string('discharge_total');
             $table->string('description');
             $table->timestamps();
         });

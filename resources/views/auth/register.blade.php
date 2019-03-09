@@ -51,21 +51,21 @@
                         </div>
                         <div class="form-group">
                             <label>User Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="User Name">
+                            <input type="text" name="name" class="form-control">
                             @if ($errors->has('name'))
                             <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" class="form-control">
                             @if ($errors->has('email'))
                             <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <input type="password" name="password" class="form-control">
                             @if ($errors->has('password'))
                             <span class="text-danger">{{ $errors->first('password') }}</span>
                             @endif

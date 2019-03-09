@@ -14,7 +14,6 @@ class Event extends Model
 		'discharge_rate',
 		'additive_id',
 		'gallons',
-		'discharge_total',
 		'description',
 	];
 

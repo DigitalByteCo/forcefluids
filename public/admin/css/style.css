@@ -3132,3 +3132,8 @@ footer.site-footer .footer-inner a {
 .social-button .gsuite:hover {
     background-color: #d85f52;
 }
+
+.navbar .navbar-nav li > a .menu-icon {
+    color : #000;
+    width : 30px;
+}

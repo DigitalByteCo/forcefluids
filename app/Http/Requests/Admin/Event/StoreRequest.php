@@ -31,7 +31,6 @@ class StoreRequest extends FormRequest
             'discharge_rate' => 'required',
             'additive_id' => 'required|integer',
             'gallons' => 'required|numeric',
-            'discharge_total' => 'required',
             'description' => 'required',
         ];
     }

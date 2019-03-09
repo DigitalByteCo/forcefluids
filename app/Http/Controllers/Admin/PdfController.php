@@ -29,17 +29,20 @@ class PdfController extends Controller
         return view('pdf.create', compact('products'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Google_Client $client)
     {
         $data = $request->all();
+        $company = strtolower($data['company']);
+        $company = str_replace(" ", "_", $company);
+        $date = date("Y_m_d_H_i_s");
 
-        $blank_ticket_template = 'customer_receipt_'.strtotime('now').".pdf";
+        $blank_ticket_template = 'customer_receipt_'.$company.'_'.$date.".pdf";
         $pdf1 = PDF::loadView('pdf-template.blank_receiving_ticket_template', compact('data'))->setPaper('a3', 'potrait')->save('../storage/app/public/pdf/'.$blank_ticket_template);
 
-        $blank_sale_order = 'sales_order_'.strtotime('now').".pdf";
+        $blank_sale_order = 'sales_order_'.$company.'_'.$date.".pdf";
         $pdf2 = PDF::loadView('pdf-template.blank_sale_order_template', compact('data'))->setPaper('a3', 'potrait')->save('../storage/app/public/pdf/'.$blank_sale_order);
 
-        $product_sample_ticket = 'product_sample_'.strtotime('now').".pdf";
+        $product_sample_ticket = 'product_sample_'.$company.'_'.$date.".pdf";
         $pdf3 = PDF::loadView('pdf-template.product_sample_ticket_template', compact('data'))->setPaper('a3', 'potrait')->save('../storage/app/public/pdf/'.$product_sample_ticket);
 
         if(!empty($request->user()->refresh_token)) {
