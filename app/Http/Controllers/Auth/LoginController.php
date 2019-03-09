@@ -45,19 +45,19 @@ class LoginController extends Controller
      * Redirect the user to the Google authentication page.
      *
      * @return \Illuminate\Http\Response
-     */
+ */
     public function redirectToProvider()
     {
         $params = [
-         // 'hd' => env('GOOGLE_CLIENT_HD'),
-            'access_type' => 'offline',
-        ];
+         'hd' => env('GOOGLE_CLIENT_HD'),
+         'access_type' => 'offline',
+     ];
 
-        return Socialite::driver('google')
-        ->scopes(["https://www.googleapis.com/auth/drive"])
-        ->with($params)
-        ->redirect();
-    }
+     return Socialite::driver('google')
+     ->scopes(["https://www.googleapis.com/auth/drive"])
+     ->with($params)
+     ->redirect();
+ }
 
     /**
      * Obtain the user information from Google.

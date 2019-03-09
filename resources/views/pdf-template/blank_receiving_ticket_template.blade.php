@@ -37,10 +37,16 @@ foreach($data['product_name'] as $k => $v) {
             </div>
             <div class="pdf_header_div pull-right">
                 <div class="text-right pick_up_div">
-                    <label class="pull-right"><strong>PickUp Location(if applicable)</strong></label>
+                    <label class="pull-right"><strong>Location Type : </strong><span>{{ucfirst($data['location_type'])}}</span></label>
+                    <br/>
+                </div>
+                @if($data['location_type'] == 'pickup')
+                <div class="text-right pick_up_div">
+                    <label class="pull-right"><strong>PickUp Location</strong></label>
                     <br/>
                     <p>{{$data['pickup_location']}}</p>
                 </div>
+                @endif
             </div>
         </div>
         <div style="clear: both;"></div>

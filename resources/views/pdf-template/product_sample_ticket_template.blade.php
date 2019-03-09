@@ -35,6 +35,12 @@ foreach($data['product_name'] as $k => $v) {
                     <p>(337) 354-2350</p>
                 </div>
             </div>
+            <div class="pdf_header_div pull-right">
+                <div class="text-right pick_up_div">
+                    <label class="pull-right"><strong>Location Type : </strong><span>{{ucfirst($data['location_type'])}}</span></label>
+                    <br/>
+                </div>
+            </div>
         </div>
         <div style="clear: both;"></div>
         <p class="color-green" style="display: block; clear: both; font-size: 30px;"><strong>Product Sample Ticket</strong></p>

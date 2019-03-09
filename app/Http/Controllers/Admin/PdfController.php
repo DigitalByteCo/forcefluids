@@ -50,9 +50,15 @@ class PdfController extends Controller
             $this->drive = new Google_Service_Drive($client);
             $id = $this->getFolderID();
 
-            $this->createFile($blank_ticket_template, $id);
-            $this->createFile($blank_sale_order, $id);
-            $this->createFile($product_sample_ticket, $id);
+            if(!empty($data['customer_receipt'])) {
+                $this->createFile($blank_ticket_template, $id);
+            }
+            if(!empty($data['sales_order'])){
+                $this->createFile($blank_sale_order, $id);
+            }
+            if(!empty($data['product_sample'])) {
+                $this->createFile($product_sample_ticket, $id);
+            }
         }
         return view('pdf.download', compact('blank_ticket_template', 'blank_sale_order', 'product_sample_ticket'));
     }

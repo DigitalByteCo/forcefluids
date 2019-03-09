@@ -51,6 +51,21 @@
                                         <input type="text" id="company" name="company" class="form-control">
                                     </div>
                                     <div class="form-group">
+                                        <div class="col col-md-12">
+                                            <label class=" form-control-label">Location Type</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="form-check-inline form-check">
+                                                <label for="inline-radio1" class="form-check-label ">
+                                                    <input type="radio" id="inline-radio1" name="location_type" value="pickup" class="form-check-input" checked="checked">Pick Up
+                                                </label>&nbsp;
+                                                <label for="inline-radio2" class="form-check-label ">
+                                                    <input type="radio" id="inline-radio2" name="location_type" value="delivery" class="form-check-input">Delivery
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group pickup_location_div">
                                         <label for="pickup_location" class=" form-control-label">Pickup Location</label>
                                         <select name="pickup_location" class="form-control">
                                             <option value="Force Headquarters Broussard, LA  5431 Highway 90 E. Broussard, LA 70518">Force Headquarters Broussard, LA  5431 Highway 90 E. Broussard, LA 70518</option>
@@ -152,6 +167,30 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <div>
+                                    <label class=" form-control-label">Select PDF template to upload in Google Drive</label>
+                                </div>
+                                <div>
+                                    <div class="form-check">
+                                        <div class="checkbox">
+                                            <label for="checkbox1" class="form-check-label ">
+                                                <input type="checkbox" id="checkbox1" name="customer_receipt" value="1" class="form-check-input">Customer Receipt
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label for="checkbox2" class="form-check-label ">
+                                                <input type="checkbox" id="checkbox2" name="sales_order" value="1" class="form-check-input"> Sales Order
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label for="checkbox3" class="form-check-label ">
+                                                <input type="checkbox" id="checkbox3" name="product_sample" value="1" class="form-check-input"> Product Sample
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-outline-success" name="submit" style="float: right;">Submit</button>
                                 <button type="button" class="btn btn-outline-primary add_product">Add Product</button>
                                 <button type="button" class="btn btn-outline-danger cancle_product">Remove Product</button>
@@ -228,6 +267,15 @@
             if(error) {
                 alert("All fields are required!!!");
                 return false;
+            }
+        });
+
+        $('input[type=radio][name=location_type]').change(function() {
+            if (this.value === 'pickup') {
+                $(".pickup_location_div").show();
+            }
+            else if (this.value === 'delivery') {
+                $(".pickup_location_div").hide();
             }
         });
     });
