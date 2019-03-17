@@ -44,7 +44,7 @@ foreach($data['product_name'] as $k => $v) {
                 <div class="text-right pick_up_div">
                     <label class="pull-right"><strong>PickUp Location</strong></label>
                     <br/>
-                    <p>{{$data['pickup_location']}}</p>
+                    <p>{{$location->address}}</p>
                 </div>
                 @endif
             </div>
@@ -57,11 +57,11 @@ foreach($data['product_name'] as $k => $v) {
                 <label class="highlight-label">Date:</label>
                 <p>{{$data['date']}}</p>
                 <label class="highlight-label">Requested By:</label>
-                <p>{{$data['requested_by']}}</p>
+                <p>{{$data['purchase_approved_by']}}</p>
             </div>
             <div class="form_details">
                 <label class="highlight-label">Company:</label>
-                <p>{{$data['company']}}</p>
+                <p>{{$company}}</p>
                 <label class="highlight-label">PO # or N/A</label>
                 <p>{{$data['po_or_na']}}</p>
             </div>

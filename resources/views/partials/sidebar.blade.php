@@ -6,7 +6,7 @@
             <ul class="nav navbar-nav">
                 @if(!auth()->user()->isCustomer())
                 <li>
-                    <a href="{{route('pdf.create')}}"><i class="menu-icon fa fa-plus"></i>New Sales Order</a>
+                    <a href="{{route('sales-order.index')}}"><i class="menu-icon fa fa-file"></i>Sales Order</a>
                 </li>
                 @endif
                 @if(auth()->user()->isAdmin())

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\SalesOrder;
 use App\Model\Product;
 use Illuminate\Http\Request;
 use Auth;
@@ -27,8 +28,8 @@ class HomeController extends Controller
             $jobs = $user->jobs;
             return view('job.index', compact('jobs'));
         } else {
-            $products = Product::all();
-            return view('pdf.create', compact('products'));
+            $orders = SalesOrder::all();
+            return view('pdf.index', compact('orders'));
         }
     }
 

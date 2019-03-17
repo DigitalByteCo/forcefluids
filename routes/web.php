@@ -31,8 +31,10 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
 		Route::resource('job.revenue', 'JobRevenueController', ['only' => ['create', 'store']])->middleware('check.job');
 
-		Route::resource('pdf', 'PdfController', ['only' => ['create', 'store']]);
-		Route::post('pdf/mail', 'PdfController@sendMail')->name('mail.pdf');
+		Route::resource('sales-order', 'PdfController', ['only' => ['index', 'create', 'store', 'show']]);
+		Route::get('sales-order/{order}/download', 'PdfController@download')->name('sales-order.download');
+
+		Route::post('sales-order/mail', 'PdfController@sendMail')->name('mail.pdf');
 	});
 	Route::get('/change-password', 'HomeController@getChangePassword')->name('get.change-pass');
 	Route::post('/change-password', 'HomeController@postChangePassword')->name('post.change-pass');

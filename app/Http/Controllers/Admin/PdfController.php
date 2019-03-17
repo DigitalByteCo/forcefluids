@@ -6,6 +6,10 @@ use Google_Client;
 use Google_Service_Drive;
 use Google_Service_Drive_DriveFile;
 use App\Model\Product;
+use App\Model\PickupLocation;
+use App\Model\Company;
+use App\Model\SalesOrder;
+use App\Model\SalesOrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendPdf;
@@ -23,27 +27,37 @@ class PdfController extends Controller
         $this->middleware('check.pdf');
     }
 
+    public function index()
+    {
+        $orders = SalesOrder::all();
+        return view('pdf.index', compact('orders'));
+    }
+
     public function create()
     {
         $products = Product::all();
-        return view('pdf.create', compact('products'));
+        $locations = PickupLocation::all();
+        $companies = Company::all();
+
+        return view('pdf.create', compact('products', 'locations', 'companies'));
     }
 
     public function store(Request $request, Google_Client $client)
     {
         $data = $request->all();
-        $company = strtolower($data['company']);
-        $company = str_replace(" ", "_", $company);
-        $date = date("Y_m_d_H_i_s");
+        $data['date'] = date('Y-m-d', strtotime($data['date']));
+        $order = new SalesOrder;
+        $order->user_id = $request->user()->id;
+        $order->fill($data);
+        if($data['location_type'] === 'pickup') {
+            $order->pickup_location_id = $data['pickup_location_id'];
+        }
 
-        $blank_ticket_template = 'customer_receipt_'.$company.'_'.$date.".pdf";
-        $pdf1 = PDF::loadView('pdf-template.blank_receiving_ticket_template', compact('data'))->setPaper('a3', 'potrait')->save('../storage/app/public/pdf/'.$blank_ticket_template);
+        $this->_createSalesOrderPdf($order, $data);
 
-        $blank_sale_order = 'sales_order_'.$company.'_'.$date.".pdf";
-        $pdf2 = PDF::loadView('pdf-template.blank_sale_order_template', compact('data'))->setPaper('a3', 'potrait')->save('../storage/app/public/pdf/'.$blank_sale_order);
+        $order->save();
 
-        $product_sample_ticket = 'product_sample_'.$company.'_'.$date.".pdf";
-        $pdf3 = PDF::loadView('pdf-template.product_sample_ticket_template', compact('data'))->setPaper('a3', 'potrait')->save('../storage/app/public/pdf/'.$product_sample_ticket);
+        $this->_saveSalesOrderProducts($order, $data);
 
         if(!empty($request->user()->refresh_token)) {
             $client->refreshToken($request->user()->refresh_token);
@@ -51,22 +65,27 @@ class PdfController extends Controller
             $id = $this->getFolderID();
 
             if(!empty($data['customer_receipt'])) {
-                $this->createFile($blank_ticket_template, $id);
+                $this->createFile($order->customer_receipt_file, $id);
             }
             if(!empty($data['sales_order'])){
-                $this->createFile($blank_sale_order, $id);
+                $this->createFile($order->sales_order_file, $id);
             }
             if(!empty($data['product_sample'])) {
-                $this->createFile($product_sample_ticket, $id);
+                $this->createFile($order->product_sample_file, $id);
             }
         }
-        return view('pdf.download', compact('blank_ticket_template', 'blank_sale_order', 'product_sample_ticket'));
+        return redirect()->route('sales-order.download', $order);
+    }
+
+    public function show(SalesOrder $sales_order)
+    {
+        return view('pdf.view', compact('sales_order'));
     }
 
     public function sendMail(Request $request)
     {
         Mail::to($request->to_email)->send(new SendPdf($request->all()));
-        return redirect()->route('pdf.create');
+        return redirect()->route('sales-order.create');
     }
 
     private function createFile($name, $id)
@@ -120,5 +139,56 @@ class PdfController extends Controller
         $folder = $this->drive->files->create($folder_meta, array(
             'fields' => 'id'));
         return $folder->id;
+    }
+
+    private function _saveSalesOrderProducts($order, $data)
+    {
+        foreach ($data['product_name'] as $key => $value) {
+            $salesOrderProduct = new SalesOrderProduct;
+            if($value == 'other') {
+                $product = new Product;
+                $product->name = $data['other_prod'][$key];
+                $product->application = $data['product_application'][$key];
+                $product->price = $data['price'][$key];
+                $product->save();
+                $salesOrderProduct->product_id = $product->id;
+            } else {
+                $salesOrderProduct->product_id = $value;
+            }
+
+            $salesOrderProduct->unit = $data['unit'][$key];
+            $salesOrderProduct->qty = $data['qty'][$key];
+            $salesOrderProduct->price = $data['price'][$key];
+            $salesOrderProduct->total = $data['qty'][$key] * $data['price'][$key];
+
+            $order->salesOrderProducts()->save($salesOrderProduct);
+        }
+    }
+
+    private function _createSalesOrderPdf($order, $data)
+    {
+        $company = Company::find($data['company_id']);
+        $location = PickupLocation::find($data['pickup_location_id']);
+        $company = strtolower($company->name);
+        $company = str_replace(" ", "_", $company);
+        $date = date("Y_m_d_H_i_s");
+
+        $blank_ticket_template = 'customer_receipt_'.$company.'_'.$date.".pdf";
+        $pdf1 = PDF::loadView('pdf-template.blank_receiving_ticket_template', compact('data', 'location', 'company'))->setPaper('a3', 'potrait')->save('../storage/app/public/pdf/'.$blank_ticket_template);
+
+        $blank_sale_order = 'sales_order_'.$company.'_'.$date.".pdf";
+        $pdf2 = PDF::loadView('pdf-template.blank_sale_order_template', compact('data', 'location', 'company'))->setPaper('a3', 'potrait')->save('../storage/app/public/pdf/'.$blank_sale_order);
+
+        $product_sample_ticket = 'product_sample_'.$company.'_'.$date.".pdf";
+        $pdf3 = PDF::loadView('pdf-template.product_sample_ticket_template', compact('data', 'location', 'company'))->setPaper('a3', 'potrait')->save('../storage/app/public/pdf/'.$product_sample_ticket);
+
+        $order->customer_receipt_file = $blank_ticket_template;
+        $order->sales_order_file = $blank_sale_order;
+        $order->product_sample_file = $product_sample_ticket;
+    }
+
+    public function download(SalesOrder $order)
+    {
+        return view('pdf.download', compact('order'));
     }
 }

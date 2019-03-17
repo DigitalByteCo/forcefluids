@@ -6,7 +6,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Create New Job</h1>
+                        <h1>New Job Revenue</h1>
                     </div>
                 </div>
             </div>
@@ -15,8 +15,8 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="{{route('home')}}">Dashboard</a></li>
-                            <li><a href="{{route('job.index')}}">Job</a></li>
-                            <li class="active">Create</li>
+                            <li><a href="{{route('job-revenue.index')}}">Job</a></li>
+                            <li class="active">Create Job Revenue</li>
                         </ol>
                     </div>
                 </div>

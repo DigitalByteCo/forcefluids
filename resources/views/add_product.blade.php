@@ -4,7 +4,7 @@
         <select id="product_name_{{$data['prod_no']}}" name="product_name[]" class="form-control product_name" data-no="{{$data['prod_no']}}">
             <option value="0">Select Product</option>
             @foreach($products as $p)
-            <option value="{{$p->name}}" data-price="{{$p->price}}" data-app="{{$p->application}}">{{$p->name}}</option>
+            <option value="{{$p->id}}" data-price="{{$p->price}}" data-app="{{$p->application}}">{{$p->name}}</option>
             @endforeach
             <option value="other">Other</option>
         </select>

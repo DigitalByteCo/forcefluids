@@ -16,7 +16,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="{{route('home')}}">Dashboard</a></li>
-                            <li class="active">Sales Order</li>
+                            <li><a href="{{route('sales-order.index')}}">Sales Order</a></li>
                             <li class="active">Create</li>
                         </ol>
                     </div>
@@ -34,7 +34,7 @@
                         <strong class="card-title">Force Fluids Sales Order Form</strong>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{route('pdf.store')}}" id="salesForm">
+                        <form method="post" action="{{route('sales-order.store')}}" id="salesForm">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 mb-5">
@@ -43,12 +43,12 @@
                                         <input type="text" id="date" name="date" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="requested_by" class=" form-control-label">Requested By</label>
-                                        <input type="text" id="requested_by" name="requested_by" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="company" class=" form-control-label">Company</label>
-                                        <input type="text" id="company" name="company" class="form-control">
+                                        <label for="company_id" class=" form-control-label">Company</label>
+                                        <select id="company_id" name="company_id" class="form-control">
+                                            @foreach($companies as $c)
+                                            <option value="{{$c->id}}">{{$c->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <div class="col col-md-12">
@@ -66,12 +66,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group pickup_location_div">
-                                        <label for="pickup_location" class=" form-control-label">Pickup Location</label>
-                                        <select name="pickup_location" class="form-control">
-                                            <option value="Force Headquarters Broussard, LA  5431 Highway 90 E. Broussard, LA 70518">Force Headquarters Broussard, LA  5431 Highway 90 E. Broussard, LA 70518</option>
-                                            <option value="Diversified Warehouse 600 Industrial Ave., OdesTX, 79761">Diversified Warehouse 600 Industrial Ave., OdesTX, 79761</option>
-                                            <option value="Ray West warehouse 4801 Baldwin Blvd, Corpus Christi, TX 78408">Ray West warehouse 4801 Baldwin Blvd, Corpus Christi, TX 78408</option>
-                                            <option value="Ray West warehouse 4801 Baldwin Blvd, Corpus Christi, TX 78408">Jones Road Warehouse 5969 Jones Rd, Bryan, TX 77807</option>
+                                        <label for="pickup_location_id" class=" form-control-label">Pickup Location</label>
+                                        <select id="pickup_location_id" name="pickup_location_id" class="form-control">
+                                            @foreach($locations as $l)
+                                            <option value="{{$l->id}}">{{$l->address}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -131,7 +130,7 @@
                                         <select id="product_name_1" name="product_name[]" class="form-control product_name" data-no="1">
                                             <option value="0">Select Product</option>
                                             @foreach($products as $p)
-                                            <option value="{{$p->name}}" data-price="{{$p->price}}" data-app="{{$p->application}}">{{$p->name}}</option>
+                                            <option value="{{$p->id}}" data-price="{{$p->price}}" data-app="{{$p->application}}">{{$p->name}}</option>
                                             @endforeach
                                             <option value="other">Other</option>
                                         </select>
@@ -167,6 +166,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <button type="button" class="btn btn-outline-primary add_product">Add Product</button>
+                                <button type="button" class="btn btn-outline-danger cancle_product">Remove Product</button>
+                            </div>
+                            <div class="form-group">
                                 <div>
                                     <label class=" form-control-label">Select PDF template to upload in Google Drive</label>
                                 </div>
@@ -192,8 +195,6 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-outline-success" name="submit" style="float: right;">Submit</button>
-                                <button type="button" class="btn btn-outline-primary add_product">Add Product</button>
-                                <button type="button" class="btn btn-outline-danger cancle_product">Remove Product</button>
                             </div>
                         </form>
                     </div>
@@ -241,7 +242,7 @@
             if(pro != 0) {
                 var prod_no = $(".product_main_div:last").data("no");
                 $.ajax({
-                    url : '/product?prod_no='+prod_no,
+                    url :  '{{route("product")}}'+'?prod_no='+prod_no,
                     type : 'get',
                     success : function (html) {
                         $(".all_product").append(html);
